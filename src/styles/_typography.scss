@@ -1,0 +1,152 @@
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Source Sans Pro', sans-serif;
+
+// typography
+.text--h1 {
+  font-size: 64px;
+  line-height: 72px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 40px;
+    line-height: 52px;
+  }
+}
+
+.text--h2 {
+  font-size: 36px;
+  line-height: 52px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 32px;
+    line-height: 48px;
+  }
+}
+
+.text--h3 {
+  font-size: 32px;
+  line-height: 36px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+
+.text--h4 {
+  font-size: 28px;
+  line-height: 42px;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
+
+.text--body-1 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.text--body-2 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.text--body-3 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 14px;
+    line-height: 24px;
+  }  
+}
+
+.text--body-4 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 14px;
+    line-height: 20px;
+  }  
+}
+
+.text--blockquote {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  font-family: $font-primary;
+  text-transform: uppercase;
+  text-align: center;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 28px;
+  }  
+}
+
+.text--reference {
+  font-size: 14px;
+  line-height: 22px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.text--caption {
+  font-size: 14px;
+  line-height: 22px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 12px;
+    line-height: 18px; 
+  }
+}
+
+.text--overline {
+  font-size: 10px;
+  line-height: 16px;
+  font-family: $font-primary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 10px;
+    line-height: 16px; 
+  }
+}
+
+.line-divider {
+  border-bottom: black;
+}
+
+p > a, li > a {
+  font-weight: 700;
+  border-bottom: 2px solid black;
+  text-decoration: none;
+  word-break: break-word;
+}
