@@ -581,29 +581,6 @@
          "type":"Feature",
          "geometry":{
             "type":"Point",
-            "coordinates":{
-               
-            }
-         },
-         "properties":{
-            "name":"An-Nahdhah",
-            "location":"9A Bishan Street 14 S’pore 579786",
-            "etymology":"",
-            "malay_street_name":"",
-            "type":"MBMF",
-            "cluster":"North",
-            "alive_prog":"Yes",
-            "barrier-free":"Yes",
-            "adil_prog":"Yes",
-            "year_built":"2006",
-            "mrt":"Bishan",
-            "capacity":4000
-         }
-      },
-      {
-         "type":"Feature",
-         "geometry":{
-            "type":"Point",
             "coordinates":[
                103.7735557,
                1.453751544

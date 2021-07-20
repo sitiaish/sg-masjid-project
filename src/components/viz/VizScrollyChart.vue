@@ -84,7 +84,7 @@ export default {
       chartSVG
         .attr('width', this.width)
         .attr('height', this.height)
-        // .style('border', '1px solid black')
+        .style('border', '1px solid black')
         .call(this.responsivefy)
         .append('g')
         .attr('class', 'chartarea').attr('transform', `translate(0, ${this.chartMargin.top})`)
@@ -132,9 +132,8 @@ export default {
         .data(mapData.features).enter()
         .append('path')
         .attr('d', geoPath)
-        .style('fill', '#dedede')
-        // .style('fill', d => clusterColors[d.properties['CLUSTER']])
-        .attr('stroke', 'white')
+        .style('fill', 'white')
+        .attr('stroke', 'grey')
         .attr('stroke-width', 0.3)
         
       d3.select('g.map').attr('opacity', 0);
@@ -147,11 +146,11 @@ export default {
       chartarea.selectAll('circle.mosque')
         .transition('allMosqueEnter')
         .duration(1000)        
-        .attr('cx',  (d, i) => 22 + i % 10 * 60)
-        .attr('cy', (d, i) => 30 + Math.floor(i / 10) * 60)
-        .attr('r', 20)
-        .style('fill', d => `url(#${d.name})`);
-        // .attr('fill', '#c6c6c6');
+        .attr('cx',  (d, i) => 50 + i % 11 * 75)
+        .attr('cy', (d, i) => 20 + Math.floor(i / 11) * 75)
+        .attr('r', 18)
+        // .style('fill', d => `url(#${d.name})`);
+        .attr('fill', '#c6c6c6');
     },
     // step 2
     drawByCluster(data) {
@@ -169,7 +168,7 @@ export default {
         .duration(1000)
         .attr('cx', (d, i) => clusterCoord[i].x + 15)
         .attr('cy', (d, i) => clusterCoord[i].y + 40)
-        .attr('r', 12)
+        .attr('r', 15)
         .style('fill', '#c6c6c6')
 
       const labelData = d3.group(data, d => d.cluster);
@@ -204,12 +203,12 @@ export default {
         .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
         .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
         .attr('name', d => d.name)
-        .attr('r', 6)
+        .attr('r', 10)
         // .attr('transform', 'translate(5, 5)')
-        .style('fill', 'white')
+        .style('fill', 'red')
         .attr('stroke', '#69b3a2')
         .attr('stroke-width', 0.3)
-        .attr('fill-opacity', .5);
+        .attr('fill-opacity', .8);
 
       d3.select('g.map').transition('mapMosqueFade').duration(500).attr('opacity', 1);
 
@@ -255,8 +254,8 @@ export default {
         .data(selectedMap.features).enter()
         .append('path')
         .attr('d', geoPath)
-        .style('fill', '#dedede')
-        .attr('stroke', 'white')
+        .style('fill', 'white')
+        .attr('stroke', 'black')
         .attr('stroke-width', 0.3);
 
       // draw filtered sso
@@ -280,7 +279,7 @@ export default {
         .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
         .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
         .attr('name', d => d.name)
-        .attr('r', 10)
+        .attr('r', 15)
         // .attr('transform', 'translate(0, 10)')
         .style('fill', '#69b3a2')
         .attr('fill-opacity', d => d.cluster === selectedCluster ? .4 : 0);
@@ -315,7 +314,7 @@ export default {
         .duration(1500) 
         .attr('cx', (d, i) => landuseCoord[i].x + 15)
         .attr('cy', (d, i) => landuseCoord[i].y + 20)
-        .attr('r', 12);
+        .attr('r', 15);
 
       const labelData = d3.group(data, d => d.type);
 
@@ -381,8 +380,8 @@ export default {
         const i = coordInit[d[groupBy]].count
         let start = 
           { x: coordInit[d[groupBy]].x, y: coordInit[d[groupBy]].y }
-        start.x += 40 * (i % 6)
-        start.y += 40 * Math.floor(i / 6)
+        start.x += 45 * (i % 6)
+        start.y += 45 * Math.floor(i / 6)
 
         coordInit[d[groupBy]].count += 1
         return start

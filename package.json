@@ -14,9 +14,11 @@
     "intersection-observer": "^0.12.0",
     "lodash.kebabcase": "^4.1.1",
     "mapbox-gl": "^2.2.0",
+    "roughjs": "^4.4.1",
     "scrollama": "^2.2.2",
     "topojson-client": "^3.1.0",
     "vue": "^2.6.11",
+    "vue-rough-notation": "^0.1.11",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

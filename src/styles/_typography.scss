@@ -1,11 +1,23 @@
 $font-primary: 'Poppins', sans-serif;
-$font-secondary: 'Source Sans Pro', sans-serif;
+$font-secondary: 'Inconsolata', monospace;
 
 // typography
+.font-secondary {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-tertiary {
+  font-family: 'Inconsolata', monospace !important;
+}
+
+.font-serif {
+  font-family: 'Lora', serif;
+}
+
 .text--h1 {
-  font-size: 64px;
-  line-height: 72px;
-  font-family: $font-primary;
+  font-size: 56px;
+  line-height: 64px;
+  font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 40px;
@@ -37,7 +49,7 @@ $font-secondary: 'Source Sans Pro', sans-serif;
 
 .text--h4 {
   font-size: 28px;
-  line-height: 42px;
+  line-height: 38px;
   font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
@@ -50,7 +62,7 @@ $font-secondary: 'Source Sans Pro', sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 32px;
-  font-family: $font-secondary;
+  font-family: $font-primary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 18px;
@@ -61,8 +73,8 @@ $font-secondary: 'Source Sans Pro', sans-serif;
 .text--body-2 {
   font-size: 18px;
   font-weight: 400;
-  line-height: 28px;
-  font-family: $font-secondary;
+  line-height: 30px;
+  font-family: $font-primary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 16px;
@@ -121,7 +133,7 @@ $font-secondary: 'Source Sans Pro', sans-serif;
 .text--caption {
   font-size: 14px;
   line-height: 22px;
-  font-family: $font-primary;
+  font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 12px;
