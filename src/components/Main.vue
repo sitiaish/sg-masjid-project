@@ -1,23 +1,35 @@
 <template>
   <div>
-    <SectionSaf />
+    <SectionLanding />
+    <Section2Names/>  
+    <Section3MosqueTypes/>  
+
+    <!-- <SectionMap /> -->
+<!-- 
     <SectionMosques />
-    <!-- <SectionSaf /> -->
-    <SectionMap />
+    <SectionSaf />
+    <SectionMap /> -->
   </div>
 </template>
 
 <script>
-import SectionMosques from '@/components/views/SectionMosques'
-import SectionSaf from '@/components/views/SectionSaf';
-import SectionMap from '@/components/views/SectionMap';
+import SectionLanding from '@/components/views/SectionLanding'
+import Section2Names from '@/components/views/Section2Names'
+import Section3MosqueTypes from '@/components/views/Section3MosqueTypes'
+
+// import SectionMosques from '@/components/views/SectionMosques'
+// import SectionSaf from '@/components/views/SectionSaf';
+// import SectionMap from '@/components/views/SectionMap';
 
 export default {
   name: 'Main',
   components: {
-    SectionMosques,
-    SectionSaf,
-    SectionMap,
+    SectionLanding,    
+    Section2Names,
+    Section3MosqueTypes,    
+    // SectionMosques,
+    // SectionSaf,
+    // SectionMap,
   },
   data: () => ({
     ecosystem: [

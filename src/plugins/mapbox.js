@@ -42,5 +42,5 @@ const createControl = config => {
 export default {
   createMap,
   createPopup,
-  createControl
+  createControl,
 };

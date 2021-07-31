@@ -1,46 +1,39 @@
 <template>
   <div class="post-static__scrolly">
-    <v-container
-      py-12>
+    <v-container outer>>
       <v-row align="start" justify="center" class="scrolly-side">
         <!-- step container -->
-        <v-col cols="12" md="4" class="scrolly__content mr-12">
+        <v-col cols="12" md="4" class="scrolly__content">
           <!-- per step - entry step -->
           <div class="step first" data-step="1">
             <div class="text-block">
-              <p class="text--body-2 font-weight-medium">Which is your mosque? </p>
-              <p class="text--body-3">I speak from my personal experience: I frequent mosques which are located nearer to me.</p>
+              <p class="text--body-2 font-weight-medium">Where are the mosques? </p>
               <p class="text--body-3">
-                I spent the majority of my childhood playing in <span class="highlight-1 ">Masjid Assyakirin</span> mainly because my mom couldn’t find someone to babysit me while she worked in the mosque. <br>
-                <span class="highlight-1 ">Masjid Jamae’ Queenstown</span> in my teens because my secondary school was overlooking that mosque. <br>
-                And now as an adult, <span class="highlight-1 ">Masjid Omar Kampong Melaka</span> because it’s walking distance from Kontinentalist’s office.
+                Okay let's use <span class="dot"/> to represent one mosque from our dataset. I've arranged all the mosques here in alphabetical order. Go ahead and hover on the circles - see if you can uncover the mosque that you frequent.
+              </p>
+              <p class="text--body-3">
+                I couldn't find all the logos of the mosques in the dataset. For those without, I've used the generic mosque emoji as a placeholder.
               </p>
             </div>
           </div>
 
           <div class="step" data-step="2">
             <div class="text-block">
-              <p class="text--body-2 font-weight-medium">The Enhanced Mosque Cluster</p>
               <p class="text--body-3">
-                MUIS groups the mosques under its administration by 'Enhanced Mosque Clusters'. This is in part, an effort to strategetically position the mosques as “significant nodes in the national grid”. 
+                MUIS classifies the mosque by <span class="highlight-1">clusters</span>: North, South, East West. I've always thought that there were more mosques in the East for some reason because <em>East-side best side</em>. And colloquially, I'd assumed that there were more Muslims in the East than in the West.
               </p>
+
               <p class="text--body-3">
-                In the four cardinal directions, these clusters are as follows: 
-                <span class="highlight-1">North, South, East West.</span>
-              </p>
-              <p class="text--body-3">
-                Yeah I know, what's so strategic about this? But wait!
-              </p>
+                But the locations of the mosques are almost equally divided across the different cluster.
+              </p>         
+              
             </div>
           </div>
 
           <div class="step" data-step="3">
             <div class="text-block">
               <p class="text--body-3">
-                Initially, before 2018, there were six mosque clusters based on the Community Development Council (CDC) boundaries to facilitate accessibility to ComCare. ComCare's a social assistance initiative for low-income individuals and families and mosques.
-              </p>      
-              <p class="text--body-3">
-                This goes hand-in-hand with the role of the mosque in distributing <em>zakat</em> to the recipients within eeach cluster.
+                And on the map, they disperse to look roughly like this. 
               </p>
             </div>
           </div>
@@ -61,9 +54,7 @@
         </v-col>
 
         <!-- sticky container -->
-        <v-col cols="12" md="7" class="scrolly__sticky">
-          <h1 class="text--body-1 font-weight-medium mb-1">71 masjid-masjid Singapura</h1>        
-          <h2 class="text--caption font-weight-light mb-2">Setiap bulatan adalah sebuah masjid</h2>          
+        <v-col cols="12" md="8" class="scrolly__sticky">
           <VizScrollyChart 
             :step="step"
             :direction="direction" />
@@ -211,10 +202,12 @@ iframe {
 }
 
 .dot {
-  height: 12px;
-  width: 12px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
   display: inline-block;
+  vertical-align: baseline;
+  background-color: #dedede;
 }
 
 </style>

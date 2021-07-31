@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper__story {
-  background-color: #ddcabd;
-}
+// .wrapper__story {
+//   // background-color: #ddcabd;
+// }
 </style>
