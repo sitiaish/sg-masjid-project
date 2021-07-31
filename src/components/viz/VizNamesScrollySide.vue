@@ -297,8 +297,7 @@ div .tab {
   font-size: 20px;
   display: inline-block;
   padding: 0 2px;
-  margin-right: 4px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Inconsolata', monospace;
 }
 
 .selected {
@@ -312,5 +311,17 @@ div .tab {
 .second-dimmed {
   opacity: 0.2;
 }
+
+@media #{map-get($display-breakpoints, 'xl-only')} {
+  .step {
+    margin: 0 48px 1rem auto;
+  }
+
+  .text--mosque-label {
+    font-size: 22px;
+    padding: 0 4px;
+    margin-right: 8px;
+  }
+}    
 
 </style>
