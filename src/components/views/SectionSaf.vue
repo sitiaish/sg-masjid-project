@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     async parseData() {
-      this.data = await d3.csv('/data/data.csv');      
+      this.data = await d3.csv('data/data.csv');      
       this.$nextTick(() => {
         this.data.forEach(n => {
           this.drawGraph(_kebabCase(n.name), n.divided);

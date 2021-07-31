@@ -69,9 +69,9 @@ export default {
   },
   methods: {
     async parseData() {
-      this.data = await d3.csv('/data/data.csv'); 
-      this.map = await d3.json('/data/sg.json');
-      this.comcare = await d3.csv('/data/comcare.csv');
+      this.data = await d3.csv('data/data.csv'); 
+      this.map = await d3.json('data/sg.json');
+      this.comcare = await d3.csv('data/comcare.csv');
       this.$nextTick(() => {
         this.initChart(this.data);
         this.initMap(this.map, this.comcare)
@@ -108,7 +108,7 @@ export default {
         .attr('height', '100%')
         .attr('viewBox', '0 0 120 120')
         .append('image')
-        .attr('href', d => `/data/${d.name}.svg`)
+        .attr('href', d => `data/${d.name}.svg`)
         .attr('width', '120')
         .attr('height', '120')
         .attr('x', 0)

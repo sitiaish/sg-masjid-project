@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     async parseData() {
-      const data = await d3.csv('/data/data.csv');
+      const data = await d3.csv('data/data.csv');
       this.$nextTick(() => {
         this.createNodes(data);
         this.initChart();  
