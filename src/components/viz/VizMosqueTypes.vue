@@ -1,18 +1,42 @@
 <template>
-<div>
-Named after 
-<v-select
-  v-model='selectedNaming'
-  :items='options'
-  item-value='item'
-  item-text='label'
-/>
+<div class="viz-mosque-type mb-12">
+  <v-container inner class="mb-4">
+    <div class="mb-3">
+      <p class="text--body-3 font-weight-bold font-secondary">Mosques in Singapore arranged by year established</p>
+    </div>
 
-{{ selectedNaming}}
-<div class="chart-wrapper--mosque-types">
-  <svg id="svg--mosque-types" />
-  <div class="tooltip-wrapper"/>
-</div>
+    <div class="selection-pills mb-3">
+      <p class="text--caption mb-0">Show mosques named after:</p>
+      <v-chip-group>
+        <v-chip
+          v-for="(n, i) in options"
+          :key="i + '-mosque-types'"
+          class="ma-2 text--caption"
+          @click="filterOpacity(n.item)"
+        >
+          {{ n.label }}
+        </v-chip>
+      </v-chip-group>
+      <span class="text--caption ml-6" @click="filterOpacity('reset')">Reset</span>
+    </div>
+
+    <div class="legend-mosque-type">
+      <!-- <p class="text--caption mb-2">Mosques by landuse type:</p> -->
+      <div 
+        v-for="(j, i) in legendTypes"
+        :key="i + '-legend'">
+        <span class="dot-legend" :style="{ backgroundColor: j.style}" />
+        <span class="text--caption mr-3">{{ j.label}}</span>
+      </div>
+    </div>
+  </v-container>
+
+  <v-container>
+    <div class="chartwrapper-mosque-types">
+      <svg id="svg-mosque-types" />
+      <div class="tooltip-wrapper"/>
+    </div>
+  </v-container>
 </div>
 </template>
 
@@ -26,26 +50,18 @@ export default {
   data() {
     return {
       data: null,
-      selectedNaming: '',
       options: [
-        { label :'the benefactors/people', item: 'adil_prog' },
-        { label :'Arabic virtues', item: 'alive_prog' },
-        { label :'places', item: 'barrier-free' },
+        { label :'People', item: 'name' },
+        { label :'Arabic virtues', item: 'arabic' },
+        { label :'Places', item: 'place' },
       ],
-      names:[
-        {id: 1, name: 'Paul', age: 23},
-        {id: 2, name: 'Marcelo', age: 15},
-        {id: 3, name: 'Any', age: 30},
-      ]      
+      legendTypes: [
+        { label :'Wakaf', style: '#E760A6' },
+        { label :'Temporary Occupation License', style: '#55414A' },
+        { label :'Mosque Building Mendaki Fund', style: '#477AD7' }, 
+        { label :'Leasehold', style: '#007064' },        
+      ],
     };
-  },
-  watch: {
-    selectedNaming(newVal) {
-      d3.selectAll('circle.mosque').attr('fill', 'none');
-
-      d3.selectAll('circle.mosque')
-        .attr('fill', d => d[newVal] ===  'Yes' ? 'purple' : 'yellow').attr('opacity', 1);
-    }
   },
   computed: {
     height() {
@@ -55,12 +71,12 @@ export default {
       return window.innerHeight * 0.7;
     },
     width() {
-      const width = d3.select('.chart-wrapper--mosque-types').node().getBoundingClientRect().width
+      const width = d3.select('.chartwrapper-mosque-types').node().getBoundingClientRect().width
         return width;
     },
     chartMargin() {
       if (this.$vuetify.breakpoint.smAndDown) {
-        return { top: 10, right: 10, bottom: 10, left: 10 };
+        return { top: 30, right: 10, bottom: 10, left: 10 };
       }
       return { top: 50, right: 10, bottom: 10, left: 50 };
     },    
@@ -76,136 +92,42 @@ export default {
   },
   methods: {
     async loadData() {
-      this.data = await d3.csv('/data/data.csv');
+      this.data = await d3.csv('data/data.csv');
       this.$nextTick(() => {
         this.initChart();
         this.drawBeeswarm(this.data);
       });           
     },
     initChart() {
-      const chartSVG = d3.select('#svg--mosque-types');
+      const chartSVG = d3.select('#svg-mosque-types');
       // draw base
       chartSVG
         .attr('width', this.width)
         .attr('height', this.height)
-        .style('border', '1px solid black')
+        // .style('border', '1px solid black')
         .call(this.responsivefy)
         .append('g')
-        .attr('class', 'chartarea').attr('transform', `translate(50, ${this.chartMargin.top})`)
+        .attr('class', 'chartarea-type').attr('transform', `translate(50, ${this.chartMargin.top})`)
     }, 
-    drawByCluster(data) {
-      const clusterSettings = {
-        North: { x: 0, y: 0, count: 0 },
-        South: { x: 0, y: this.chartSettings.innerHeight / 2, count: 0 },
-        East: { x: this.chartSettings.innerWidth / 2, y: 0, count: 0 },
-        West: { x: this.chartSettings.innerWidth / 2, y: this.chartSettings.innerHeight / 2, count: 0 },
-      }
-
-      const clusterCoord = this.getCoordinates(data, clusterSettings, 'cluster');
-
-      d3.selectAll('circle.mosque')
-        .transition('clusterMosqueEnter')
-        .duration(1000)
-        .attr('cx', (d, i) => clusterCoord[i].x + 15)
-        .attr('cy', (d, i) => clusterCoord[i].y + 40)
-        .attr('r', 15)
-        .style('fill', '#c6c6c6')
-
-      const labelData = d3.group(data, d => d.cluster);
-
-      const textgroup = d3
-        .select('.chartarea')
-        .append('g')
-        .attr('class', 'text-group')
-        .selectAll('text')
-        .data(labelData).enter();
-
-      textgroup
-        .append('text')
-        .attr('class', d => `cluster-name ${d[0]}`)
-        .attr('x',  d => clusterSettings[d[0]].x)
-        .attr('y', d => clusterSettings[d[0]].y - 20)
-        .text(d => d[0] + ' Cluster')
-
-      textgroup
-        .append('text')
-        .attr('x',  d => clusterSettings[d[0]].x)
-        .attr('y',  d => clusterSettings[d[0]].y)
-        .text(d => d[1].length + ' mosques')        
-        .attr('class', 'text--caption cluster-name');       
-    },
-    // step 3
-    drawMosqueMap(mapData) {
-      const projection = d3.geoMercator().fitSize([this.chartSettings.innerWidth,this.chartSettings.innerHeight], mapData);
-
-      d3.selectAll('circle.mosque')
-        .transition('mapMosqueEnter').duration(1500)
-        .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
-        .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
-        .attr('name', d => d.name)
-        .attr('r', 10)
-        // .attr('transform', 'translate(5, 5)')
-        .style('fill', 'red')
-        .attr('stroke', '#69b3a2')
-        .attr('stroke-width', 0.3)
-        .attr('fill-opacity', .8);
-
-      d3.select('g.map').transition('mapMosqueFade').duration(500).attr('opacity', 1);
-
-    },
     colorByLanduse() {
-      const LanduseColor = {
-        Wakaf: 'red', 
-        TOL: 'yellow',
-        MBMF: 'green',
-        Leasehold: 'purple'
-      }
-      d3.selectAll('circle.mosque')
-        .attr('fill', d => LanduseColor[d.type]);
-    },
-    drawByLanduse(data) {
+      // const LanduseColor = {
+      //   Wakaf: '#2E8190', 
+      //   TOL: '#D2BFDA',
+      //   MBMF: '#A1A9CC',
+      //   Leasehold: '#6896B4',
+      //   Others: '#F8D9E6'
+      // }
+      // d3.selectAll('circle.mosque-type')
+      //   .attr('fill', d => LanduseColor[d.type]);
 
-      d3.selectAll('text.cluster-name').remove();
-
-      const LanduseSettings = {
-        Wakaf: { x: 0, y: 0, count: 0, label: 'Wakaf' },
-        TOL: { x: 0, y: this.chartSettings.innerHeight / 2, count: 0, label: 'Temporary Occupation Licence' },
-        MBMF: { x: this.chartSettings.innerWidth / 2, y: 0, count: 0, label: 'Mosque Building & Mendaki Fund' },
-        Leasehold: { x: this.chartSettings.innerWidth / 2, y: this.chartSettings.innerHeight / 2, count: 0, label: 'Leasehold' },
-        Others: { x: 0, y: 4 * this.chartSettings.innerHeight / 5, count: 0, label: 'Other' },        
-      }
-
-      const landuseCoord = this.getCoordinates(data, LanduseSettings, 'type');
-
-      d3.select('.chartarea')
-        .selectAll('circle.data')
-        .transition()
-        .duration(1500) 
-        .attr('cx', (d, i) => landuseCoord[i].x + 15)
-        .attr('cy', (d, i) => landuseCoord[i].y + 20)
-        .attr('r', 15);
-
-      const labelData = d3.group(data, d => d.type);
-
-      const textgroup = d3
-        .select('.chartarea')
-        .append('g')
-        .attr('class', 'text-group')
-        .selectAll('text')
-        .data(labelData).enter();
-
-      textgroup
-        .append('text')
-        .attr('class', d => `landuse-name ${d[0]}`)
-        .attr('x',  d => LanduseSettings[d[0]].x)
-        .attr('y', d => LanduseSettings[d[0]].y - 15)
-        .text(d => LanduseSettings[d[0]].label)   
-    },       
+      const svg = d3.select('#svg-mosque-type');
+      svg.selectAll('circle.mosque-type').attr('fill', '#ffffff');      
+    },    
     drawBeeswarm(data) {
       const width = this.chartSettings.innerWidth - 100;
       const height = this.chartSettings.innerHeight;
       const xScale = d3.scaleLinear().domain([1819.5, 2020.5]).range([0, width]);
-      const selectChart = d3.select('#svg--mosque-types').select('g.chartarea');
+      const selectChart = d3.select('#svg-mosque-types').select('g.chartarea-type');
 
       selectChart
         .append('g').attr('class', 'XAxis')
@@ -220,22 +142,27 @@ export default {
       d3.selectAll('.XAxis > .tick line').attr('transform', 'translate(0, -5)');
 
      const circles = selectChart
-        .selectAll('circle.mosque')
+        .selectAll('circle.mosque-type')
         .data(data).enter()
         .append('circle')
-        .attr('class', 'mosque')
-        .attr('class', d => `mosque ${d.name}`)
+        .attr('class', 'mosque-type')
         .attr('cx', this.width / 2 )
         .attr('cy', this.height / 2)
+        .attr('fill', '#ffffff')
+        .attr('stroke', 'black')          
         .attr('r', 20);
 
       circles
       .on('mouseenter.tooltip', function mouseenter(event, d) {
-        d3.select(this).attr('fill', 'red').transition().duration(100).attr('opacity', 1);
+          d3
+          .select(this)
+          .attr('stroke', '#2e2e2e')
+          .attr('stroke-width', 3)
+          .attr('opacity', 1);
 
         const selectedBubble = d3.select(this).node().getBoundingClientRect();
         
-        const container = d3.select('.chart-wrapper--mosque-types').node().getBoundingClientRect();
+        const container = d3.select('.chartwrapper-mosque-types').node().getBoundingClientRect();
 
         const tooltip = d3.select('.tooltip-wrapper').node().getBoundingClientRect();
 
@@ -254,13 +181,19 @@ export default {
           .style('left', `${posLeft}px`)
           .style('visibility', 'visible')
           .html(`
-            <p class="text--caption mb-0">${d.name}</p>
-            <p class="text--caption font-talic mb-0">${d.type}</p>
-            <p class="text--caption mb-0">${d.year_built}</p>          
+            <p class="text--body-3 font-tertiary mb-0 font-weight-bold">${d.name}</p>
+            <p class="text--caption mb-0">Land type: ${d.type}</p>
+            <p class="text--caption mb-0">Established in: ${d.year_built}</p>          
           `);
       })
       .on('mouseleave.design', function mouseleave() {
-        // code for mouse leave
+        const svg = d3.select('#svg-mosque-types');
+        svg
+          .selectAll('circle.mosque-type').attr('opacity', 0);
+
+        setTimeout(function(){ 
+          d3.select('.tooltip-wrapper').style('visibility', 'hidden');
+        }, 5000);
       });
 
       d3.forceSimulation()
@@ -270,54 +203,65 @@ export default {
         .nodes(data)
         .alpha(0.7)
         .on('tick', function updateNodes() {
-          d3.selectAll('circle.mosque')
+          d3.selectAll('circle.mosque-type')
             .transition()
             .duration(20)      
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
         })
         .on("end", function (){
-          const rc = rough.svg(d3.select('svg').node())
+          const rc = rough.svg(d3.select('#svg-mosque-types').node())
           // circle to rough circle
-          const allCircles = d3.selectAll('circle')
+          const allCircles = d3.selectAll('circle.mosque-type')
           allCircles.each(function() {
             const aCircle = d3.select(this);
             const container = d3.select(this.parentNode);
-            const mosqueType = aCircle.data()[0].type
+            const type = aCircle.data()[0].type;
+            const namedAfter = aCircle.data()[0].named_after;
 
-            function fillColor(mosqueType) {
+            function fillColor(type) {
               const LanduseColor = {
-                Wakaf: 'red', 
-                TOL: 'yellow',
-                MBMF: 'green',
-                Leasehold: 'purple'
+                Wakaf: '#E760A6', 
+                TOL: '#55414A',
+                MBMF: '#477AD7',
+                Leasehold: '#007064',
+                // Others: '#F8D9E6'
               }           
-              return LanduseColor[mosqueType]
+              return LanduseColor[type]
             }
 
-            let options = { fill: fillColor(mosqueType) , fillStyle: 'dashed', fillWeight: 3 };
+            let options = { fill: fillColor(type), fillWeight: 1, fillStyle: 'cross-hatch', roughness: 1 };
 
             const rCircle = rc.circle(
               +aCircle.attr("cx"), 
               +aCircle.attr("cy"), 
               +aCircle.attr("r")*2,
               options);
-            container.node().appendChild(rCircle)
-            // .classList.add('test');
+            container
+              .node()
+              .appendChild(rCircle)
+              .classList.add('mosque-sketch', namedAfter);
 
             // d3.selectAll('g.test')
             //   .on('mouseover', function something() {
             //     d3.select(this).attr('r', '10')
             //   })
-
-
             aCircle.attr('opacity', '0');
           })                          
         });
-
-
-      this.colorByLanduse();  
     },  
+    filterOpacity(selected, ) {
+      const svg = d3.select('#svg-mosque-types');
+
+      if (selected === 'reset') {
+        svg.selectAll('.mosque-sketch').attr('opacity', '1');
+        d3.selectAll('.v-chip--active').classed('v-chip--active', false);
+
+      } else {
+        svg.selectAll('.mosque-sketch').attr('opacity', '0.1');
+        svg.selectAll(`.${selected}`).attr('opacity', '1');
+      }
+    },
     kebabCase(string) {
       return _kebabCase(string)
     },      
@@ -346,20 +290,74 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.chart-wrapper--mosque-types {
+<style lang="scss" scoped>
+.chartwrapper-mosque-types {
   position: relative;
 }
 
 .tooltip-wrapper {
-  border: 2px solid #3e3e3e;
-  background:goldenrod;
+  // border: 1px solid #3e3e3e;
+  background: #f5f5f5;
   position: absolute;
   visibility: hidden;
   min-width: 120px;
   max-width: 250px;
   padding: 8px;
+  pointer-events: none;
 }
+
+.dot-legend {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  border: 2px solid #3e3e3e;
+}
+
+.viz-mosque-type {
+  position: relative;
+}
+
+.legend-mosque-type {
+  top: 36px;
+  left: 48px;
+  display: inline-block;
+
+  div {
+    display: inline-block;
+  }
+}
+
+.v-chip .v-chip--clickable .v-chip--no-color .v-chip--outlined .theme--light {
+  border-color: red !important;
+}
+
+.v-chip--active {
+  background-color:#bababa !important;
+}
+
+.selection-pills {
+  p {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .v-chip-group {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+</style>
+
+<style lang="scss">
+#svg-mosque-types {
+  text {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.9rem;
+  }
+}
+
 </style>
 
 

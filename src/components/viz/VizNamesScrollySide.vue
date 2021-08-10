@@ -97,6 +97,28 @@
             </p>
           </div>
         </div>
+
+        <div class="step first" data-step="4">
+          <div class="text-block">
+            <p class="text--body-1 font-tertiary font-weight-bold">Names with roots to the Indian Muslim community</p>
+
+            <p class="text--body-3">
+              <span class="text--body-2 font-tertiary font-weight-bold">Jamae'</span>
+            </p>
+            
+            <p class="text--body-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi quae sequi eveniet dolorum unde eius neque dicta fugiat vitae beatae totam libero mollitia, laborum, harum qui voluptatem praesentium eaque.
+            </p> 
+          </div>
+        </div>
+
+        <div class="step first" data-step="4">
+          <div class="text-block">
+            <p class="text--body-3">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque autem cumque, tempore inventore vitae perferendis delectus nisi quasi sed. Nulla voluptatem ad facere assumenda sed consequatur explicabo, neque maxime incidunt!
+            </p>
+          </div>
+        </div>        
       </v-col>      
 
       <v-col cols="12" md="8" class="scrolly__sticky">
@@ -108,7 +130,7 @@
               type="highlight"
               :color="n.namesOfPeople === 'name' ? '#bddcff' : '#ffbdce'"
               :is-show = true>
-              {{ n.name }}
+              <span class="font-weight-bold">{{ n.name }}</span>
             </RoughNotation>
             <span v-else class="dimmed">{{ n.name }}</span>
 
@@ -117,7 +139,7 @@
         </div>
     
         <div v-if="currentStep === '2'">        
-          <p v-for="(n, i) in mosquenames" :key="i + 'step3'" 
+          <p v-for="(n, i) in mosquenames" :key="i + 'step2'" 
             class="text--mosque-label">
             <RoughNotation
               v-if="n.language === 'arabic'"            
@@ -125,7 +147,7 @@
               :strokeWidth="1"
               color="#54ad67"
               :is-show = true>
-              {{ n.name }}
+              <span class="font-weight-bold">{{ n.name }}</span>
             </RoughNotation>
             <span v-else-if="n.namesOfPeople" class="second-dimmed">{{ n.name }}</span>
             <span v-else class="dimmed">{{ n.name }}</span>
@@ -135,7 +157,7 @@
         </div>    
 
         <div v-if="currentStep === '3'">        
-          <p v-for="(n, i) in mosquenames" :key="i + 'step4'" 
+          <p v-for="(n, i) in mosquenames" :key="i + 'step3'" 
             class="text--mosque-label">
             <RoughNotation
               v-if="n.language === 'malay' || n.language === 'english'"            
@@ -143,7 +165,7 @@
               :strokeWidth="1"
               color="#2D432B"
               :is-show = true>
-              {{ n.name }}
+              <span class="font-weight-bold">{{ n.name }}</span>
             </RoughNotation>
 
             <span 
@@ -164,7 +186,26 @@
 
             <span class="mx-3" style="font-weight: 500"/>
           </p>
-        </div>              
+        </div>      
+
+        <div v-if="currentStep === '4'">        
+          <p v-for="(n, i) in mosquenames" :key="i + 'step4'" 
+            class="text--mosque-label">
+            <RoughNotation
+              v-if="n.indianMuslim"           
+              type="highlight"
+              color="#ffd3c3"
+              :is-show = true>
+              <span class="font-weight-bold">{{ n.name }}</span>
+            </RoughNotation>           
+
+            <span v-else class="dimmed">
+              {{ n.name }}
+            </span>
+
+            <span class="mx-3" style="font-weight: 500"/>
+          </p>
+        </div>                  
 
         <div v-if="currentStep === '0'">                         
           <p v-for="(n, i) in mosquenames" :key="i + 'step-default'" 
@@ -305,11 +346,11 @@ div .tab {
 }
 
 .dimmed {
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 .second-dimmed {
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 @media #{map-get($display-breakpoints, 'xl-only')} {

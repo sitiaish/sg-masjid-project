@@ -1,9 +1,13 @@
 <template>
 <div>
-  <!-- <v-btn @click="drawByName(data)">click</v-btn> -->
-  
-  <div class="wrapper__scrolly-chart">
-    <svg id="scrolly-chart" />
+  <div class="wrapper__scrolly-chart-circle">
+    <div class="mapSection__controls" v-show="step === '4'">
+      <v-btn @click="drawMapBySelection('North')">North</v-btn>
+      <v-btn @click="drawMapBySelection('South')">South</v-btn>
+      <v-btn @click="drawMapBySelection('East')">East</v-btn>
+      <v-btn @click="drawMapBySelection('West')">West</v-btn>
+    </div>
+    <svg id="scrolly-chart-circle" />
   </div>
 </div>
 </template>
@@ -16,7 +20,7 @@ export default {
   name: 'VizScrollyChart',
   props: {
     step: {
-      type: Number,
+      type: String,
       required: true,
     },
     direction: {
@@ -24,9 +28,16 @@ export default {
       required: true,
     },
   },
+  watch: {
+    step(currentStep) {
+      this.handleView(currentStep);
+    },
+  },
   data() {
     return {
-      data: [],
+      data: null,
+      map: null,
+      comcare: null,
     };
   },
   computed: {
@@ -34,74 +45,41 @@ export default {
       if (this.$vuetify.breakpoint.smAndDown) {
         return 350;
       }
-      return window.innerHeight * 0.75;
+      return window.innerHeight * 0.95;
     },
     width() {
-      const width = d3.select('.wrapper__scrolly-chart').node().getBoundingClientRect().width
+      const width = d3.select('.wrapper__scrolly-chart-circle').node().getBoundingClientRect().width
         return width;
     },
-    centerCoor() {
-      return {
-        x: this.chartSettings.innerWidth / 2,
-        y: this.chartSettings.innerHeight / 2,
-      };
-    },
-    splitCenterCoors() {
-      if (this.$vuetify.breakpoint.smAndDown) {
-        return {
-          bubbles: [
-            { x: this.chartSettings.width / 2 + 10, y: this.chartSettings.height / 4 - 50 },
-            { x: this.chartSettings.width / 2 + 10, y: (3 * this.chartSettings.height) / 4 + 25 },
-          ],
-          labels: [
-            { x: this.chartSettings.width / 2, y: 18 },
-            { x: this.chartSettings.width / 2, y: this.chartSettings.height / 2 - 20 },
-          ],
-        };
-      }
-      return {
-        bubbles: [
-          { x: (0.7 * this.chartSettings.width) / 4, y: 0.42 * this.chartSettings.height },
-          { x: (3.1 * this.chartSettings.width) / 4, y: 0.55 * this.chartSettings.height },
-        ],
-        labels: [
-          { x: (1.5 * this.chartSettings.width) / 6, y: 25 },
-          { x: (4.4 * this.chartSettings.width) / 6, y: 25 },
-        ],
-      };
-    },        
     chartMargin() {
       if (this.$vuetify.breakpoint.smAndDown) {
         return { top: 10, right: 10, bottom: 10, left: 10 };
       }
-      return { top: 60, right: 10, bottom: 10, left: 10 };
+      return { top: 50, right: 10, bottom: 10, left: 50 };
     },    
     chartSettings() {
       return {
-        innerWidth: this.width - this.chartMargin.left - this.chartMargin.right,
+        innerWidth: this.width,
         innerHeight: this.height - this.chartMargin.top - this.chartMargin.bottom,
       };
-    },    
+    },
   },  
   mounted() {
     this.parseData();
   },
   methods: {
     async parseData() {
-      const data = await d3.csv('data/data.csv');
+      this.data = await d3.csv('data/data.csv'); 
+      this.map = await d3.json('data/sg.json');
+      this.comcare = await d3.csv('data/comcare.csv');
       this.$nextTick(() => {
-        this.createNodes(data);
-        this.initChart();  
-        this.createSimulation();
-        this.groupBubbles();
-        this.drawBubbleChart(this.data);  
-     });              
+        this.initChart(this.data);
+        this.initMap(this.map, this.comcare)
+        this.drawAllmosque2s();
+      });           
     },
-    clearChartArea() {
-      this.chartSVG.select('.cluster-name').transition().duration(200).attr('opacity', 0)
-    },
-    initChart() {
-      const chartSVG = d3.select('#scrolly-chart');
+    initChart(data) {
+      const chartSVG = d3.select('#scrolly-chart-circle');
       // draw base
       chartSVG
         .attr('width', this.width)
@@ -109,228 +87,307 @@ export default {
         .style('border', '1px solid black')
         .call(this.responsivefy)
         .append('g')
-        .attr('class', 'chartarea').attr('transform', `translate(0, ${this.chartMargin.top / 2})`);        
-    },
-    createNodes(rawData) {
-      this.data = rawData.map((d) => {
-        return {
-          name: d.name,
-          type: d.type,
-          cluster: d.cluster,
-          radius: 10,
-          x: Math.random(),
-          y: Math.random(),
-        };
-      });
-    },    
-    drawByCluster(data) {
-      const cluster = 
-      d3.select('g.chartarea')
-        .selectAll('g.cluster')
-        .data(d3.group(data, d => d.cluster)).enter()
-            .append('g')
-            .attr('class', d => `cluster ${d[0]}`);
+        .attr('class', 'chartarea').attr('transform', `translate(0, ${this.chartMargin.top})`)
+        .selectAll('circle.mosque2')
+        .data(data).enter()
+        .append('circle').attr('class', 'mosque2')
+        .attr('cx', this.width / 2 )
+        .attr('cy', this.height / 2)
 
-      cluster     
-        .selectAll('circle.masjid')
-        .data(([, values]) => values)
+      // draw pattern 
+      chartSVG
+        .append('g')
+        .attr('class', 'patterns')
+        .selectAll('defs')
+        .data(data)
         .enter()
-        .append('circle').attr('class', 'masjid')
-        .attr('cx',  (d, i) => 15 + i % 6 * 40)
-        .attr('cy', (d, i) => 30 + Math.floor(i / 6) * 40)
-        .attr('r', 15)
-        .attr('fill', '#c6c6c6');
+        .append('defs')
+        .append('pattern')
+        .attr('id', (d) => d.name)
+        .attr('width', '100%')
+        .attr('height', '100%')
+        .attr('viewBox', '0 0 120 120')
+        .append('image')
+        .attr('href', d => `data/${d.name}.svg`)
+        .attr('width', '120')
+        .attr('height', '120')
+        .attr('x', 0)
+        .attr('y', 0);      
+    },
+    initMap(mapData) {
+      const projection = d3.geoMercator().fitSize([this.chartSettings.innerWidth,this.chartSettings.innerHeight], mapData);
+      const geoPath = d3.geoPath(projection);
 
-      cluster
-        .append('text').attr('class', 'cluster-name')
-        .attr('x',  0)
-        .attr('y', -35)
+      // const clusterColors = {
+      //   EAST: 'pink',
+      //   NORTH: 'red',
+      //   SOUTH: 'blue',
+      //   WEST: 'green'
+      // };
+
+      d3.select('g.chartarea').append('g').attr('class', 'map').lower();
+
+      d3.select('g.map')
+        .selectAll('path')
+        .data(mapData.features).enter()
+        .append('path')
+        .attr('d', geoPath)
+        .style('fill', 'white')
+        .attr('stroke', 'grey')
+        .attr('stroke-width', 0.3)
+        
+      d3.select('g.map').attr('opacity', 0);
+        
+    },    
+    // step 1
+    drawAllmosque2s() {
+      const chartarea = d3.select('g.chartarea');
+
+      chartarea.selectAll('circle.mosque2')
+        .transition('allmosque2Enter')
+        .duration(1000)        
+        .attr('cx',  (d, i) => 50 + i % 11 * 75)
+        .attr('cy', (d, i) => 20 + Math.floor(i / 11) * 75)
+        .attr('r', 18)
+        // .style('fill', d => `url(#${d.name})`);
+        .attr('fill', '#c6c6c6');
+    },
+    // step 2
+    drawByCluster(data) {
+      const clusterSettings = {
+        North: { x: 0, y: 0, count: 0 },
+        South: { x: 0, y: this.chartSettings.innerHeight / 2, count: 0 },
+        East: { x: this.chartSettings.innerWidth / 2, y: 0, count: 0 },
+        West: { x: this.chartSettings.innerWidth / 2, y: this.chartSettings.innerHeight / 2, count: 0 },
+      }
+
+      const clusterCoord = this.getCoordinates(data, clusterSettings, 'cluster');
+
+      d3.selectAll('circle.mosque2')
+        .transition('clustermosque2Enter')
+        .duration(1000)
+        .attr('cx', (d, i) => clusterCoord[i].x + 15)
+        .attr('cy', (d, i) => clusterCoord[i].y + 40)
+        .attr('r', 15)
+        .style('fill', '#c6c6c6')
+
+      const labelData = d3.group(data, d => d.cluster);
+
+      const textgroup = d3
+        .select('.chartarea')
+        .append('g')
+        .attr('class', 'text-group')
+        .selectAll('text')
+        .data(labelData).enter();
+
+      textgroup
+        .append('text')
+        .attr('class', d => `cluster-name ${d[0]}`)
+        .attr('x',  d => clusterSettings[d[0]].x)
+        .attr('y', d => clusterSettings[d[0]].y - 20)
         .text(d => d[0] + ' Cluster')
 
-      cluster
-        .append('text').attr('class', 'cluster-name')
-        .attr('x',  0)
-        .attr('y', -15)
-        .text(d => d[1].length + ' mosques')        
-        .attr('class', 'text--caption');      
+      textgroup
+        .append('text')
+        .attr('x',  d => clusterSettings[d[0]].x)
+        .attr('y',  d => clusterSettings[d[0]].y)
+        .text(d => d[1].length + ' mosque2s')        
+        .attr('class', 'text--caption cluster-name');       
+    },
+    // step 3
+    drawmosque2Map(mapData) {
+      const projection = d3.geoMercator().fitSize([this.chartSettings.innerWidth,this.chartSettings.innerHeight], mapData);
 
-      // cluster.exit().remove();          
+      d3.selectAll('circle.mosque2')
+        .transition('mapmosque2Enter').duration(1500)
+        .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
+        .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
+        .attr('name', d => d.name)
+        .attr('r', 10)
+        // .attr('transform', 'translate(5, 5)')
+        .style('fill', 'red')
+        .attr('stroke', '#69b3a2')
+        .attr('stroke-width', 0.3)
+        .attr('fill-opacity', .8);
 
-      // moving the clusters
-      d3
-        .select('g.East')
-        .attr('transform', `translate(${this.chartMargin.left + this.chartSettings.innerWidth / 2}, ${this.chartMargin.top})`)
+      d3.select('g.map').transition('mapmosque2Fade').duration(500).attr('opacity', 1);
 
-      d3
-        .select('g.West')
-        .attr('transform', `translate(${this.chartMargin.left + this.chartSettings.innerWidth / 2},  ${this.chartMargin.top + this.chartMargin.bottom + this.chartSettings.innerHeight / 2})`)
+    },
+    // step 4
+    drawComcareMap(mapData, comcare) {
+      const projection = d3.geoMercator().fitSize([this.chartSettings.innerWidth,this.chartSettings.innerHeight], mapData);
+      d3.select('g.map')
+        .append('g').attr('class', 'comcare-group')
+        .selectAll('circle.comcare')
+        .data(comcare).enter()
+        .append('circle').attr('class', 'comcare')
+        .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
+        .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
+        .attr('r', 0)
+        .transition('fadein')
+        .duration(100)
+        .attr('r', 3)
+        .delay((d, i) => 100 * i)       
+        .style('fill', 'black')
+        .attr('stroke', '#69b3a2')
+        .attr('stroke-width', 0.3)
+        .attr('fill-opacity', .4);  
+    },
+    // step 4.1-4    
+    drawMapBySelection(selectedCluster) {
+      // clear map
+      d3.selectAll('g.map, circle.mosque2').attr('opacity', 0);
+      d3.selectAll('g.map-section').remove();
 
-      d3
-        .select('g.North')
-        .attr('transform', `translate(0, ${this.chartMargin.top})`)
+      // draw new map
+      const selectedMap = {
+        "type":"FeatureCollection",
+        "features": this.map.features.filter(d => d.properties['CLUSTER'] === selectedCluster)
+      };
 
-      d3
-        .select('g.South')
-        .attr('transform', `translate(0, ${this.chartMargin.top + this.chartMargin.bottom + this.chartSettings.innerHeight / 2})`)                
+      const projection = d3.geoMercator().fitSize([this.chartSettings.innerWidth,this.chartSettings.innerHeight], selectedMap);
+      const geoPath = d3.geoPath(projection);      
 
-    },   
-    drawByName(data) {     
-
-      d3.selectAll('g.cluster')
-        .transition()
-        .duration(1000)
-        .attr('transform', `translate(${this.chartSettings.innerWidth / 4}, ${this.chartSettings.innerHeight / 2})`)
-        // .attr('opacity', 0)
-
-      d3    
-        .selectAll('circle.masjid')
-        .transition()
-        .duration(500)        
-        .attr('r', 0);
-        // .attr('fill', 'red');        
-
-
-      const type = 
       d3.select('g.chartarea')
-        .selectAll('g.cluster1')
-        .data(d3.group(data, d => d.type)).enter()
-        .append('g')
-        .attr('class', d => `cluster ${d[0]}`);
+        .append('g').attr('class', 'map-section')
+        .selectAll('path')
+        .data(selectedMap.features).enter()
+        .append('path')
+        .attr('d', geoPath)
+        .style('fill', 'white')
+        .attr('stroke', 'black')
+        .attr('stroke-width', 0.3);
 
-        console.log(d3.group(data, d => d.type));
+      // draw filtered sso
+      d3.select('g.map-section')
+        .selectAll('circle.comcare-section')
+        .data(this.comcare).enter()
+        .append('circle').attr('class', 'comcare-section')
+        .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
+        .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
+        .attr('r', 4)
+        .attr('name', d => d.name)
+        .attr('transform', 'translate(2, 2)')
+        .style('fill', 'red')
+        .attr('fill-opacity', d => d.cluster === selectedCluster ? .4 : 0);         
 
-      type     
-        .selectAll('circle.masjid2')
-        .data(([, values]) => values)
-        .enter()
-        .append('circle').attr('class', 'masjid')  
-        .attr('cx',  (d, i) => 15 + i % 6 * 40)
-        .attr('cy', (d, i) => 30 + Math.floor(i / 6) * 40)
-        .attr('r', 0)
-        .transition()
-        .duration(1000)        
+      // // draw filtered mosque2
+      d3.select('g.map-section')
+        .selectAll('circle.mosque2-section')      
+        .data(this.data).enter()
+        .append('circle').attr('class', 'mosque2-section')
+        .attr('cx', function(d){ return projection([d.long, d.lat])[0] })
+        .attr('cy', function(d){ return projection([d.long, d.lat])[1] })
+        .attr('name', d => d.name)
         .attr('r', 15)
-        .attr('fill', 'red');
-
-      type
-        .append('text').attr('class', 'type-name')
-        .attr('x',  0)
-        .attr('y', -10)
-        .text(d => d[0] + ' Type')
-
-      // type
-      //   .append('text').attr('class', 'type-name')
-      //   .attr('x',  0)
-      //   .attr('y', -15)
-      //   .text(d => d[0] + ' type')        
-      //   .attr('class', 'text--caption');      
-
-      type.exit().remove();          
-
-      // moving the clusters
-      d3
-        .select('g.Wakaf')
-        .attr('transform', `translate(${this.chartMargin.left + this.chartSettings.innerWidth / 2}, 0)`);
-
-      d3
-        .select('g.TOL')
-        .attr('transform', `translate(${this.chartMargin.left + this.chartSettings.innerWidth / 2},  ${this.chartSettings.innerHeight / 2 + 40})`);
-
-      d3
-        .select('g.MBMF')
-        .attr('transform', `translate(0, 0)`);
-
-      d3
-        .select('g.Leasehold')
-        .attr('transform', `translate(0, ${this.chartSettings.innerHeight / 2 + 40})`);              
-
-      d3
-        .select('g.Others')
-        .attr('transform', `translate(0, ${this.chartSettings.innerHeight - 30})`);
+        // .attr('transform', 'translate(0, 10)')
+        .style('fill', '#69b3a2')
+        .attr('fill-opacity', d => d.cluster === selectedCluster ? .4 : 0);
+    },       
+    colorByLanduse() {
+      const LanduseColor = {
+        Wakaf: 'red', 
+        TOL: 'yellow',
+        MBMF: 'green',
+        Leasehold: 'purple'
+      }
+      d3.selectAll('circle.data')
+        .attr('fill', d => LanduseColor[d.type]);      
     },
-    drawBubbleChart(nodes) {
-      this.bubbles = d3.select('g.chartarea').selectAll('.bubble').data(nodes);
+    drawByLanduse(data) {
 
-      const bubblesSVG = this.bubbles
-        .enter()
-        .append('circle')
-        .classed('bubbles', true)
-        .attr('r', 0)
-        .attr('fill', 'red')
+      d3.selectAll('text.cluster-name').remove();
 
-      this.bubbles = this.bubbles.merge(bubblesSVG);
-      this.bubbles.transition().duration(800).attr('r', 20);
+      const LanduseSettings = {
+        Wakaf: { x: 0, y: 0, count: 0, label: 'Wakaf' },
+        TOL: { x: 0, y: this.chartSettings.innerHeight / 2, count: 0, label: 'Temporary Occupation Licence' },
+        MBMF: { x: this.chartSettings.innerWidth / 2, y: 0, count: 0, label: 'mosque2 Building & Mendaki Fund' },
+        Leasehold: { x: this.chartSettings.innerWidth / 2, y: this.chartSettings.innerHeight / 2, count: 0, label: 'Leasehold' },
+        Others: { x: 0, y: 4 * this.chartSettings.innerHeight / 5, count: 0, label: 'Other' },        
+      }
 
-      // d3.selectAll('circle.bubbles')
-      //   .on('mouseenter', function hover() {
-      //     d3.select(this)
-      //       .attr('r', (d) => d.radius + 5)
-      //       .style('fill', 'yellow');
-      //   })
-      //   .on('mouseleave', function hover() {
-      //     d3.select(this)
-      //       .attr('r', (d) => d.radius)
-      //       .style('fill', 'blue');
-      //   });
+      const landuseCoord = this.getCoordinates(data, LanduseSettings, 'type');
 
-      this.simulation.nodes(nodes);
-    },
-    createSimulation() {
-      this.simulation = d3
-        .forceSimulation()
-        .force(
-          'charge',
-          d3.forceManyBody().strength(250)
-        )
-        .force(
-          'collision',
-          d3.forceCollide().radius(30)
-        )
-        .on('tick', this.ticked);
+      d3.select('.chartarea')
+        .selectAll('circle.data')
+        .transition()
+        .duration(1500) 
+        .attr('cx', (d, i) => landuseCoord[i].x + 15)
+        .attr('cy', (d, i) => landuseCoord[i].y + 20)
+        .attr('r', 15);
 
-      this.simulation.stop();
-    },
-    groupBubbles() {
-      this.simulation
-        .force('x', d3.forceX().strength(0.05).x(this.centerCoor.x))
-        .force('y', d3.forceY().strength(0.05).y(this.centerCoor.y))
+      const labelData = d3.group(data, d => d.type);
+
+      const textgroup = d3
+        .select('.chartarea')
+        .append('g')
+        .attr('class', 'text-group')
+        .selectAll('text')
+        .data(labelData).enter();
+
+      textgroup
+        .append('text')
+        .attr('class', d => `landuse-name ${d[0]}`)
+        .attr('x',  d => LanduseSettings[d[0]].x)
+        .attr('y', d => LanduseSettings[d[0]].y - 15)
+        .text(d => LanduseSettings[d[0]].label)   
+    },       
+    drawBeeswarm(data) {
+
+      d3.selectAll('text.landuse-name').remove();
+
+
+      const width = this.chartSettings.innerWidth - 100;
+      const height = this.chartSettings.innerHeight;
+
+      const xScale = d3.scaleLinear().domain([1819.5, 2020.5]).range([0, width]);      
+      d3.select('g.chartarea')
+        .append('g').attr('class', 'XAxis')
+        .attr('transform', `translate(0, ${height - 60})`)
+        .call(
+          d3
+            .axisBottom(xScale)
+            // .ticks(10)
+            .tickFormat(d3.format('d'))
+            .tickSize(5)
+            .tickSizeOuter(0)
+        );
+      d3.selectAll('.XAxis > .tick line').attr('transform', 'translate(0, -5)');
+
+      d3.select('g.chartarea')
+        .selectAll('circle.data')
+        .attr('class', d => `data ${d.name}`)
+        .attr('r', 15)
+        // .attr('fill', 'pink');
+
+      d3.forceSimulation()
+        .force('x', d3.forceX(d => xScale(d.year_built)).strength(1.2))
+        .force('y', d3.forceY((d, i) => this.chartSettings.innerHeight / 2.5 + 2 * (i % 2) * 10).strength(0.1))
+        .force('collision', d3.forceCollide().radius(18))
+        .nodes(data)
         .alpha(0.5)
-        .restart();
-    },
-    splitBubbles(selected) {
-      this.simulation.force(
-        'x',
-        d3
-          .forceX()
-          .strength(this.strength.x)
-          .x((d) => this.splitCenterCoors.bubbles[d[selected]].x)
-      );
-      this.simulation.force(
-        'y',
-        d3
-          .forceY()
-          .strength(this.strength.y)
-          .y((d) => this.splitCenterCoors.bubbles[d[selected]].y)
-      );
-      this.simulation.force(
-        'collision',
-        d3.forceCollide().radius((d) => d.radius)
-      );
-      this.simulation.alpha(this.strength.alpha).restart();
-    },
-    ticked() {
-      const width = this.width;
-      const height = this.height;
-      d3.selectAll('circle')
-        .attr('cx', function assignx(d) {
-          d.x = Math.max(100, Math.min(width - 200, d.x));
-          return d.x;
-        })
-        .attr('cy', function assigny(d) {
-          d.y = Math.max(200, Math.min(height - 200, d.y));
-          return d.y;
+        .on('tick', function updateNodes() {
+          d3.selectAll('circle.data')
+            .transition()
+            .duration(80)      
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y);   
         });
-    },     
+    },
+    getCoordinates(data, coordInit, groupBy) {
+      const coordinates = 
+      data.map(d => {
+        const i = coordInit[d[groupBy]].count
+        let start = 
+          { x: coordInit[d[groupBy]].x, y: coordInit[d[groupBy]].y }
+        start.x += 45 * (i % 6)
+        start.y += 45 * Math.floor(i / 6)
+
+        coordInit[d[groupBy]].count += 1
+        return start
+      })
+      return coordinates
+    },    
     kebabCase(string) {
       return _kebabCase(string)
     },      
@@ -354,14 +411,68 @@ export default {
 
       svg.attr('width', w);
       svg.attr('height', Math.round(w / aspect));
-    },    
+    },
+    handleView(currentStep) {
+      switch (currentStep) {
+        case '1':
+          if (this.direction === 'up') {
+            d3.selectAll('g.text-group').remove();
+            this.drawAllmosque2s();
+          }
+          break;
+
+        case '2':
+          if (this.direction === 'up') {
+            d3.select('g.map').attr('opacity', 0);
+            this.drawByCluster(this.data);
+          } else {
+            this.drawByCluster(this.data);
+          }   
+          break;
+
+        case '3':
+          if (this.direction === 'up') {
+            d3.selectAll('circle.comcare, g.map-section').remove();
+            d3.selectAll('g.map, circle.mosque2').transition('fadein').duration(350).attr('opacity', 1);
+          } else {
+            d3.selectAll('g.text-group').remove();
+            this.drawmosque2Map(this.map);
+          }             
+          break;
+
+        case '4':
+          if (this.direction === 'up') {
+            d3.selectAll('circle.comcare').attr('r', 0);
+            d3.selectAll('g.map-section').remove();            
+          } else {
+            this.drawComcareMap(this.map, this.comcare);
+          }             
+          break;          
+
+        default:
+          break;
+      }
+    },        
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.wrapper__scrolly-chart {
-  border: 2px solid white;
+<style lang="scss">
+.wrapper__scrolly-chart-circle {
+  // border: 2px solid red;
+  position: relative;
+}
+
+path.area {
+  stroke-width: 0.3;
+  fill: #dedede;
+  stroke: white;
+}
+
+.mapSection__controls {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
 

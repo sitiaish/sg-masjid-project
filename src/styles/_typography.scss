@@ -61,7 +61,7 @@ $font-secondary: 'Inconsolata', monospace;
 .text--body-1 {
   font-size: 20px;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 34px;
   font-family: $font-primary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
@@ -73,7 +73,7 @@ $font-secondary: 'Inconsolata', monospace;
 .text--body-2 {
   font-size: 18px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 32px;
   font-family: $font-primary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
