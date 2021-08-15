@@ -1,4 +1,4 @@
-# mapbox-scrolly
+# Masjid-Masjid in Singapore
 
 ## Project setup
 ```

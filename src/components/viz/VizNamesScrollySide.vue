@@ -2,7 +2,7 @@
 <div style="background-color: #f5f5f5;">
   <v-container outer class="container--fluid scrolly-side">
     <v-row justify="space-between" align="start" no-gutters>  
-      <v-col cols="12" md="4" class="scrolly__content">
+      <v-col cols="12" md="4" class="scrolly-content">
 
         <div class="step" data-step="0">
           <div class="text-block">
@@ -103,25 +103,30 @@
             <p class="text--body-1 font-tertiary font-weight-bold">Names with roots to the Indian Muslim community</p>
 
             <p class="text--body-3">
-              <span class="text--body-2 font-tertiary font-weight-bold">Jamae'</span>
+              Islam in Singapore has always been associated with the Malays but that’s a big misconception -- religion is universal.
             </p>
-            
-            <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi quae sequi eveniet dolorum unde eius neque dicta fugiat vitae beatae totam libero mollitia, laborum, harum qui voluptatem praesentium eaque.
-            </p> 
+
+            <p class="text--body-3 mb-0">            
+              Shoutout to the Indian Muslim community in Singapore: these mosques bear historial importance to the Indian Muslims who came to our shores, some stretching to 
+              <a href="https://www.straitstimes.com/singapore/mosque-for-the-tamil-milkman" target="_blank">almost almost two centuries ago, mostly as moneylenders or traders</a>. 
+            </p>
           </div>
         </div>
 
         <div class="step first" data-step="4">
           <div class="text-block">
             <p class="text--body-3">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque autem cumque, tempore inventore vitae perferendis delectus nisi quasi sed. Nulla voluptatem ad facere assumenda sed consequatur explicabo, neque maxime incidunt!
+              Masjid Jamae Chulia was named after the Chulias -- Tamil Muslims from India's south-eastern coast. This mosque is also referred to as the Paalkaara Kadai Palli (Milkman's Shop Mosque), Periya Palli (Big Mosque) and Chulia Palli (Chulia Mosque).
+            </p>
+            
+            <p class="text--body-3 mb-0">
+              And the sermons for Friday prayers here are still conducted in Tamil until today. 
             </p>
           </div>
         </div>        
       </v-col>      
 
-      <v-col cols="12" md="8" class="scrolly__sticky">
+      <v-col cols="12" md="8" class="scrolly-sticky">
         <div v-if="currentStep === '1'">                         
           <p v-for="(n, i) in mosquenames" :key="i + 'step1'" 
             class="text--mosque-label">
@@ -149,7 +154,7 @@
               :is-show = true>
               <span class="font-weight-bold">{{ n.name }}</span>
             </RoughNotation>
-            <span v-else-if="n.namesOfPeople" class="second-dimmed">{{ n.name }}</span>
+            <span v-else-if="n.namesOfPeople" class="dimmed">{{ n.name }}</span>
             <span v-else class="dimmed">{{ n.name }}</span>
 
             <span class="mx-3" style="font-weight: 500"/>
@@ -170,13 +175,13 @@
 
             <span 
               v-else-if="n.namesOfPeople"
-              class="second-dimmed">
+              class="dimmed">
               {{ n.name }}
             </span>
 
             <span 
               v-else-if="n.language === 'arabic'"
-              class="second-dimmed">
+              class="dimmed">
               {{ n.name }}
             </span>              
 
@@ -226,7 +231,6 @@ import scrollama from 'scrollama';
 
 export default {
   name: 'VizNamesScrollySide',
-  components: {},
   data() {
     return {  
       currentStep: '0',
@@ -248,8 +252,8 @@ export default {
       // setup scrollama
       scrollerDesktop.setup({
         container: '.scrolly-side',
-        graphic: '.scrolly-side .scrolly__sticky',
-        step: '.scrolly-side .scrolly__content .step', // required
+        graphic: '.scrolly-side .scrolly-sticky',
+        step: '.scrolly-side .scrolly-content .step', // required
         offset: 0.8,
         debug: false
       })
@@ -277,30 +281,7 @@ export default {
   }
 }
 
-.casestudy-scrolly {
-  text-align: right;
-  div {
-    p {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: unset;
-      border: 1px solid #2E2E2E;
-      background-color: transparent;
-    }
-
-    p.active-selection {
-      background-color: #425D70;
-      color: #FAFAFA;
-    }
-  }  
-}
-
-
-.scrolly__side {
-  position: relative;
-}
-
-.scrolly__content {
+.scrolly-content {
   position: relative;
   padding: 0 1rem;
   width: 100%;
@@ -313,7 +294,7 @@ export default {
   align-items: center;
 }
 
-.scrolly__sticky {
+.scrolly-sticky {
   justify-content: center;  
   align-items: center;
   position: sticky;
@@ -324,15 +305,6 @@ export default {
   height: calc(100vh - 64px);
 }
 
-
-div .tab {
-  display: inline-block;
-  padding: 8px;
-  margin-right: 8px;
-  background-color: #425D70;
-  color: white;
-}
-
 .text--mosque-label {
   font-weight: 400;
   font-size: 20px;
@@ -341,15 +313,7 @@ div .tab {
   font-family: 'Inconsolata', monospace;
 }
 
-.selected {
-  color: white;
-}
-
 .dimmed {
-  opacity: 0.3;
-}
-
-.second-dimmed {
   opacity: 0.3;
 }
 

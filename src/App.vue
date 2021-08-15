@@ -1,35 +1,52 @@
 <template>
   <v-app>
     <v-main>
-      <Main/>
+      <SectionIntro />
+      <Section1Names />
+      <Section2Land />
+      <Section3Towns />
+      <Section4Architecture />
+      <SectionConclusion />
+
+      <!-- <div class="landing-mosque ml-16">
+        <img src="@/assets/assyakirin-wire.svg" height="450px" />
+        <p class="text--caption">
+          Assyakirin, Taman Jurong
+        </p>
+      </div> 
+      
+      <div class="landing-mosque ml-16">
+        <img src="@/assets/ghufran-pink.png" height="450px" />
+        <p class="text--caption">
+          Assyakirin, Taman Jurong
+        </p>
+      </div>       -->
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Main from './components/Main';
-  
+import SectionIntro from '@/components/views/SectionIntro'
+import Section1Names from '@/components/views/Section1Names'
+import Section2Land from '@/components/views/Section2Land'
+import Section3Towns from '@/components/views/Section3Towns'
+import Section4Architecture from '@/components/views/Section4Architecture'
+import SectionConclusion from '@/components/views/SectionConclusion'
+
 export default {
-  name: 'App',
-
+  name: 'App',  
   components: {
-    Main,
+    SectionIntro,
+    Section1Names,
+    Section2Land,
+    Section3Towns,
+    Section4Architecture,
+    SectionConclusion            
   },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
 
 <style lang="scss">
 @import 'styles/_grid.scss';
 @import 'styles/_typography.scss';
-
-#app-wrapper {
-  height: calc(var(--vh, 1vh) * 100 );
-  @media screen and (max-width: 1100px) {
-    overflow: hidden
-  }    
-}
 </style>

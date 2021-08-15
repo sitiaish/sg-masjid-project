@@ -142,8 +142,6 @@ export default {
         // .attr('r', this.circleRadius / 4)
         // .style('fill', '#444444')
         // .attr('fill-opacity', (d => d.cluster === selectedCluster ? 1 : 0);
-
-      
     },             
     kebabCase(string) {
       return _kebabCase(string)

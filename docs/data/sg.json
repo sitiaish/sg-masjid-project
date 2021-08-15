@@ -118,7 +118,8 @@
         },
         "properties":{
            "PLN_AREA_N":"OUTRAM",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 1.9
         }
      },
      {
@@ -452,7 +453,8 @@
         },
         "properties":{
            "PLN_AREA_N":"BUKIT MERAH",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 11.3
         }
      },
      {
@@ -634,7 +636,8 @@
         },
         "properties":{
            "PLN_AREA_N":"DOWNTOWN CORE",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -696,7 +699,8 @@
         },
         "properties":{
            "PLN_AREA_N":"MARINA SOUTH",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -810,7 +814,8 @@
         },
         "properties":{
            "PLN_AREA_N":"SINGAPORE RIVER",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -1104,7 +1109,9 @@
         },
         "properties":{
            "PLN_AREA_N":"QUEENSTOWN",
-           "CLUSTER":"West"
+           "CLUSTER":"West",
+           "MUSLIMS": 8.2,
+           "MOSQUE": ["Ahmad", "Hang Jebat", "Hussein Sulaiman"]
         }
      },
      {
@@ -1178,7 +1185,8 @@
         },
         "properties":{
            "PLN_AREA_N":"MARINA EAST",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -1308,7 +1316,8 @@
         },
         "properties":{
            "PLN_AREA_N":"RIVER VALLEY",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -2616,7 +2625,9 @@
         },
         "properties":{
            "PLN_AREA_N":"WESTERN ISLANDS",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0,
+           "MOSQUE": ["Pulau Bukom"]
         }
      },
      {
@@ -3276,7 +3287,8 @@
         },
         "properties":{
            "PLN_AREA_N":"SOUTHERN ISLANDS",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -3354,7 +3366,8 @@
         },
         "properties":{
            "PLN_AREA_N":"STRAITS VIEW",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -3512,7 +3525,8 @@
         },
         "properties":{
            "PLN_AREA_N":"MARINE PARADE",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 3.2
         }
      },
      {
@@ -3622,7 +3636,8 @@
         },
         "properties":{
            "PLN_AREA_N":"ROCHOR",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -3812,7 +3827,8 @@
         },
         "properties":{
            "PLN_AREA_N":"KALLANG",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 7.6
         }
      },
      {
@@ -3982,7 +3998,8 @@
         },
         "properties":{
            "PLN_AREA_N":"ORCHARD",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -4144,7 +4161,8 @@
         },
         "properties":{
            "PLN_AREA_N":"NEWTON",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -4354,7 +4372,8 @@
         },
         "properties":{
            "PLN_AREA_N":"PIONEER",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0
         }
      },
      {
@@ -4536,7 +4555,8 @@
         },
         "properties":{
            "PLN_AREA_N":"TANGLIN",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0.3
         }
      },
      {
@@ -4722,7 +4742,9 @@
         },
         "properties":{
            "PLN_AREA_N":"CLEMENTI",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 8.2,
+           "MOSQUE": ["Darussalam", "Tentera Diraja"]
         }
      },
      {
@@ -5192,7 +5214,8 @@
         },
         "properties":{
            "PLN_AREA_N":"TUAS",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0
         }
      },
      {
@@ -5438,7 +5461,9 @@
         },
         "properties":{
            "PLN_AREA_N":"BEDOK",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 42.7,
+           "MOSQUE": ["Al-Abdul Razak", "Abdul Aleem Siddique", "Kassim", "Mydin", "Kampung Siglap", "Al-Ansar", "Alkaff Kampung Melayu", "Al-Taqua"]
         }
      },
      {
@@ -5520,7 +5545,8 @@
         },
         "properties":{
            "PLN_AREA_N":"MUSEUM",
-           "CLUSTER":"South"
+           "CLUSTER":"South",
+           "MUSLIMS": 0
         }
      },
      {
@@ -5794,7 +5820,9 @@
         },
         "properties":{
            "PLN_AREA_N":"JURONG EAST",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 13.8,
+           "MOSQUE": ["Al-Mukminin", "Hasanah"]
         }
      },
      {
@@ -5928,7 +5956,9 @@
         },
         "properties":{
            "PLN_AREA_N":"GEYLANG",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 14.4,
+           "MOSQUE": ["Salim Mattar", "Haji Mohd Salleh (Geylang)", "Khadijah", "Wak Tanjong", "Khalid", "Darul Aman"]
         }
      },
      {
@@ -6166,7 +6196,8 @@
         },
         "properties":{
            "PLN_AREA_N":"BOON LAY",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0
         }
      },
      {
@@ -6496,7 +6527,9 @@
         },
         "properties":{
            "PLN_AREA_N":"BUKIT TIMAH",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0.7,
+           "MOSQUE": ["Al-Huda"]
         }
      },
      {
@@ -6674,7 +6707,9 @@
         },
         "properties":{
            "PLN_AREA_N":"NOVENA",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 2.6,
+           "MOSQUE": ["Omar Salamah", "Abdul Hamid Kampung Pasiran", "Hajjah Rahimabi Kebun Limau"]
         }
      },
      {
@@ -6884,7 +6919,9 @@
         },
         "properties":{
            "PLN_AREA_N":"TAMPINES",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 54.4,
+           "MOSQUE": ["Darul Ghufran"]
         }
      },
      {
@@ -7082,7 +7119,9 @@
         },
         "properties":{
            "PLN_AREA_N":"BUKIT BATOK",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 15.2,
+           "MOSQUE": ["Ar-Raudhah"]
         }
      },
      {
@@ -7260,7 +7299,9 @@
         },
         "properties":{
            "PLN_AREA_N":"JURONG WEST",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 40.8,
+           "MOSQUE": ["Assyakirin", "Maarof"]
         }
      },
      {
@@ -7446,7 +7487,9 @@
         },
         "properties":{
            "PLN_AREA_N":"SERANGOON",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 7.4,
+           "MOSQUE": ["Al-Istiqamah"]
         }
      },
      {
@@ -7676,7 +7719,9 @@
         },
         "properties":{
            "PLN_AREA_N":"HOUGANG",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 16,
+           "MOSQUE": ["Haji Yusoff", "En-Naeem"]
         }
      },
      {
@@ -7858,7 +7903,8 @@
         },
         "properties":{
            "PLN_AREA_N":"PAYA LEBAR",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 0
         }
      },
      {
@@ -8028,7 +8074,9 @@
         },
         "properties":{
            "PLN_AREA_N":"BISHAN",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 2.8,
+           "MOSQUE": ["An-Nahdhah"]
         }
      },
      {
@@ -8190,7 +8238,9 @@
         },
         "properties":{
            "PLN_AREA_N":"TOA PAYOH",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 8.2,
+           "MOSQUE": ["Alkaff Upper Serangoon", "Muhajirin"]
         }
      },
      {
@@ -8372,7 +8422,9 @@
         },
         "properties":{
            "PLN_AREA_N":"BUKIT PANJANG",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 19.5,
+           "MOSQUE": ["Al-Iman"]
         }
      },
      {
@@ -8548,7 +8600,8 @@
         },
         "properties":{
            "PLN_AREA_N":"CHANGI BAY",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 0
         }
      },
      {
@@ -8790,7 +8843,9 @@
         },
         "properties":{
            "PLN_AREA_N":"ANG MO KIO",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 13.9,
+           "MOSQUE": ["Al-Muttaqin"]
         }
      },
      {
@@ -9060,7 +9115,9 @@
         },
         "properties":{
            "PLN_AREA_N":"PASIR RIS",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 25.9,
+           "MOSQUE": ["Al-Istighfar"]           
         }
      },
      {
@@ -9202,7 +9259,8 @@
         },
         "properties":{
            "PLN_AREA_N":"TENGAH",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0
         }
      },
      {
@@ -9348,7 +9406,9 @@
         },
         "properties":{
            "PLN_AREA_N":"CHOA CHU KANG",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 26.1,
+           "MOSQUE": ["Al-Khair"]
         }
      },
      {
@@ -9530,7 +9590,9 @@
         },
         "properties":{
            "PLN_AREA_N":"SENGKANG",
-           "CLUSTER":"East"
+           "CLUSTER":"East",
+           "MUSLIMS": 19.2,
+           "MOSQUE": ["Al-Mawaddah"]
         }
      },
      {
@@ -9852,7 +9914,8 @@
         },
         "properties":{
            "PLN_AREA_N":"CHANGI",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 0
         }
      },
      {
@@ -10046,7 +10109,9 @@
         },
         "properties":{
            "PLN_AREA_N":"PUNGGOL",
-           "CLUSTER": "East"
+           "CLUSTER": "East",
+           "MUSLIMS": 8.2,
+           "MOSQUE": ["Al-Islah"]
         }
      },
      {
@@ -10292,7 +10357,8 @@
         },
         "properties":{
            "PLN_AREA_N":"SUNGEI KADUT",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0
         }
      },
      {
@@ -10572,7 +10638,9 @@
         },
         "properties":{
            "PLN_AREA_N":"YISHUN",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 30.9,
+           "MOSQUE": ["Darul Makmur", "Ahmad Ibrahim"]
         }
      },
      {
@@ -10762,7 +10830,8 @@
         },
         "properties":{
            "PLN_AREA_N":"MANDAI",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 0
         }
      },
      {
@@ -11000,7 +11069,8 @@
         },
         "properties":{
            "PLN_AREA_N":"SELETAR",
-           "CLUSTER":"East"
+           "CLUSTER":"East",
+           "MUSLIMS": 0
         }
      },
      {
@@ -11202,7 +11272,9 @@
         },
         "properties":{
            "PLN_AREA_N":"WOODLANDS",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 46.1,
+           "MOSQUE": ["An-Nur", "Yusof Ishak"]
         }
      },
      {
@@ -11740,7 +11812,9 @@
         },
         "properties":{
            "PLN_AREA_N":"WESTERN WATER CATCHMENT",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0,
+           "MOSQUE": ["Pusara Aman", "Al-Firdaus"]
         }
      },
      {
@@ -11944,7 +12018,8 @@
         },
         "properties":{
            "PLN_AREA_N":"SIMPANG",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 0
         }
      },
      {
@@ -12174,7 +12249,9 @@
         },
         "properties":{
            "PLN_AREA_N":"SEMBAWANG",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 8.8,
+           "MOSQUE": ["Petempatan Melayu Sembawang", "Assyafaah"]
         }
      },
      {
@@ -12584,7 +12661,8 @@
         },
         "properties":{
            "PLN_AREA_N":"CENTRAL WATER CATCHMENT",
-           "CLUSTER":"North"
+           "CLUSTER":"North",
+           "MUSLIMS": 0
         }
      },
      {
@@ -12810,7 +12888,8 @@
         },
         "properties":{
            "PLN_AREA_N":"LIM CHU KANG",
-           "CLUSTER": "West"
+           "CLUSTER": "West",
+           "MUSLIMS": 0
         }
      }
   ]

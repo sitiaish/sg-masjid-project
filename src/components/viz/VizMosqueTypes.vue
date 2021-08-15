@@ -1,5 +1,5 @@
 <template>
-<div class="viz-mosque-type mb-12">
+<div class="viz-mosque-type mb-16">
   <v-container inner class="mb-4">
     <div class="mb-3">
       <p class="text--body-3 font-weight-bold font-secondary">Mosques in Singapore arranged by year established</p>

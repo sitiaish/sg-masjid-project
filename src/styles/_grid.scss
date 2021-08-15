@@ -2,24 +2,37 @@
   @media only screen and (min-width: #{map-get($grid-breakpoints, 'lg')}) {
     max-width: map-get($grid-breakpoints, 'lg') * 0.93;
     padding: 0;
-  }  
+  }
+
+  @media only screen and (min-width: #{map-get($grid-breakpoints, 'xl')}) {
+    max-width: map-get($grid-breakpoints, 'lg') * 1.07;
+    padding: 0;
+  }
+
+
   &.outer {
     padding-top: 0;
     padding-bottom: 0;
 
     @media only screen and (min-width: #{map-get($grid-breakpoints, 'lg')}) {
-      max-width: map-get($grid-breakpoints, 'lg') * 1.05;
+      max-width: map-get($grid-breakpoints, 'lg') * 1.07;
       padding: 0;
     }
   }
+
   &.inner {
     padding-top: 0;
     padding-bottom: 0;
 
     @media only screen and (min-width: #{map-get($grid-breakpoints, 'md')}) {
-      max-width: map-get($grid-breakpoints, 'md') * 0.78125;
+      max-width: map-get($grid-breakpoints, 'md') * 0.85;
       padding: 0;
     }
+
+    @media only screen and (min-width: #{map-get($grid-breakpoints, 'xl')}) {
+      max-width: map-get($grid-breakpoints, 'lg') * 0.7;
+      padding: 0;
+    }    
   }
 }
 

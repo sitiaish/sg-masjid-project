@@ -110,8 +110,7 @@ $font-secondary: 'Inconsolata', monospace;
   font-size: 32px;
   font-weight: 700;
   line-height: 36px;
-  font-family: $font-primary;
-  text-transform: uppercase;
+  font-family: $font-secondary;
   text-align: center;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
