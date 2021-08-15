@@ -264,7 +264,7 @@ export default {
       this.currentStep = step; 
     },
     async loadData() {
-      this.mosquenames = await d3.csv('/data/mosque-names.csv');
+      this.mosquenames = await d3.csv('data/mosque-names.csv');
     },
   },
 }
