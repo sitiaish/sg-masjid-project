@@ -20,8 +20,8 @@ $font-secondary: 'Inconsolata', monospace;
   font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
-    font-size: 40px;
-    line-height: 52px;
+    font-size: 30px;
+    line-height: 38px;
   }
 }
 
@@ -37,9 +37,9 @@ $font-secondary: 'Inconsolata', monospace;
 }
 
 .text--h3 {
-  font-size: 32px;
-  line-height: 36px;
-  font-family: $font-primary;
+  font-size: 42px;
+  line-height: 48px;
+  font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 28px;
@@ -59,7 +59,7 @@ $font-secondary: 'Inconsolata', monospace;
 }
 
 .text--body-1 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 34px;
   font-family: $font-primary;
@@ -71,15 +71,20 @@ $font-secondary: 'Inconsolata', monospace;
 }
 
 .text--body-2 {
-  font-size: 18px;
+  font-size: 17.5px;
   font-weight: 400;
   line-height: 32px;
   font-family: $font-primary;
+  color: #2b2523;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 28px;
   }
+}
+
+p.text--body-2 {
+  margin-bottom: 20px;
 }
 
 .text--body-3 {
@@ -90,19 +95,19 @@ $font-secondary: 'Inconsolata', monospace;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 14px;
-    line-height: 24px;
+    line-height: 26px;
   }  
 }
 
-.text--body-4 {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  font-family: $font-primary;
+.text-card {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 26px;
   }  
 }
 
@@ -114,7 +119,8 @@ $font-secondary: 'Inconsolata', monospace;
   text-align: center;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
-    font-size: 28px;
+    font-size: 22px;
+    line-height: 30px;
   }  
 }
 
@@ -156,8 +162,30 @@ $font-secondary: 'Inconsolata', monospace;
 }
 
 p > a, li > a {
-  font-weight: 700;
+  font-weight: 500;
   border-bottom: 2px solid black;
   text-decoration: none;
   word-break: break-word;
+}
+
+
+// section title style
+
+.scroll-embellish {
+  display: inline-block;
+}
+
+.scroll-prompt {
+  position: relative;
+  display: inline-block;
+  margin-left: 42px;
+}
+
+.scroll-prompt:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -24px;
+  border-left: 3px solid #2e2e2e;
 }

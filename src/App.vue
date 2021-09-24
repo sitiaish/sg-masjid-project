@@ -1,27 +1,11 @@
 <template>
   <v-app>
-    <v-main>
-      <SectionIntro />
-      <Section1Names />
-      <Section2Land />
-      <Section3Towns />
-      <Section4Architecture />
-      <SectionConclusion />
-
-      <!-- <div class="landing-mosque ml-16">
-        <img src="@/assets/assyakirin-wire.svg" height="450px" />
-        <p class="text--caption">
-          Assyakirin, Taman Jurong
-        </p>
-      </div> 
-      
-      <div class="landing-mosque ml-16">
-        <img src="@/assets/ghufran-pink.png" height="450px" />
-        <p class="text--caption">
-          Assyakirin, Taman Jurong
-        </p>
-      </div>       -->
-    </v-main>
+    <SectionIntro />
+    <Section1Names />
+    <Section2Land />
+    <Section3Towns />
+    <Section4Architecture /> 
+    <SectionConclusion />
   </v-app>
 </template>
 

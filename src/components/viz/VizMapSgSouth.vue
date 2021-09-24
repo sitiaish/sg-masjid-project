@@ -23,11 +23,16 @@ export default {
   computed: {
     height() {
       if (this.$vuetify.breakpoint.smAndDown) {
-        return 350;
+        return 500;
+      } else if (this.$vuetify.breakpoint.xlOnly) {
+        return window.innerHeight * 0.8;
       }
-      return window.innerHeight * 0.95;
+      return window.innerHeight * 0.9;
     },
     circleRadius() {
+      if (this.$vuetify.breakpoint.smAndDown) {
+        return this.height / 25;
+      }      
       return this.height / 35
     },
     width() {

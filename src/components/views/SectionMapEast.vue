@@ -1,8 +1,8 @@
 <template>
   <div class="map-cluster">
     <v-row align="center" justify="end" no-gutters>
-      <v-col cols="4">
-        <div class="my-10">
+      <v-col cols="12" md="4">
+        <div>
           <p class="text--h4 mb-0">East side</p>
           <p class="text--body-2">18 mosques</p>
 
@@ -21,7 +21,7 @@
           </p>
         </div>
 
-        <div class="map-tooltip-wrapper">
+        <div class="map-tooltip-wrapper hidden-sm-and-down">
           The {{ eastItem.location }} planning area. The 2015 Census recorded {{ eastItem.muslimPop }} thousand Muslims here. There are 
           {{ eastItem.mosqueCount }}. 
           
@@ -29,24 +29,22 @@
 
         </div>                              
       </v-col>       
-      <v-col cols="7">
+      <v-col cols="12" md="7">
         <VizMapSgEast @update-east-desc="updateEastDesc" />
       </v-col>        
     </v-row>
-
-    <MapLegendCluster class="map-legend-wrapper-east"/>           
   </div>
 </template>
 
 <script>
 import VizMapSgEast from '@/components/viz/VizMapSgEast';
-import MapLegendCluster from '@/components/viz/MapLegendCluster';
+// import MapLegendCluster from '@/components/viz/MapLegendCluster';
 
 export default {
   name: 'SectionMapEast',
   components: {
     VizMapSgEast,
-    MapLegendCluster
+    // MapLegendCluster
   },
   data() {
     return {

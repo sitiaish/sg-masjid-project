@@ -1,11 +1,11 @@
 <template>
   <div class="section-cluster-new">
     <v-container outer>
-      <SectionMapWest class="my-16" />
+      <SectionMapWest class="my-md-16" />
 
-      <SectionMapEast class="my-16" />
+      <SectionMapEast class="my-md-16" />
 
-      <SectionMapNorth class="my-16"/>
+      <SectionMapNorth class="my-md-16"/>
     </v-container>  
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   components: {
     SectionMapNorth,
     SectionMapEast,
-    SectionMapWest
+    SectionMapWest,
   },
 };
 </script>

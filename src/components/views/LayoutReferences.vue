@@ -44,11 +44,12 @@
 
     .v-expansion-panel-header {
       min-height: 0;
+      padding: 16px 0px
     }
 
     @media #{map-get($display-breakpoints, 'sm-and-down')} {
       ::v-deep .v-expansion-panel-content__wrap {
-        padding: 16px;
+      padding: 16px 0px
       }
     }      
   }

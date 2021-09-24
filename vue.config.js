@@ -3,7 +3,7 @@ module.exports = {
   publicPath:
   process.env.NODE_ENV === "production"
     // ? "/sg-masjid-project"
-    ? "/"
+    ? "/docs"
     : "/",
   transpileDependencies: [
     'vuetify',

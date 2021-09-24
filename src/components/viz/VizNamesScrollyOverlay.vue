@@ -1,72 +1,228 @@
 <template>
   <v-container outer class="scrolly-overlay">
     <v-row justify="space-between" align="start">  
-      <v-col cols="12" class="casestudy-scrolly scrolly__sticky">
-        <div>
-          <p class="text--body-2 pakistan-step-1 pakistan-tab">Screened</p>
-          <p class="text--body-2 pakistan-step-2 pakistan-tab">Diagnosed</p>
-          <p class="text--body-2 pakistan-step-3 pakistan-tab">Put on treatment</p>
-          <p class="text--body-2 pakistan-step-4 pakistan-tab">Cured</p>
-        </div>
+      <v-col cols="12" class="scrolly__sticky" style="background-color: #f5f5f5;">
+        <div v-if="currentStep === '1'">                         
+          <p v-for="(n, i) in mosquenames" :key="i + 'step1'" 
+            class="text--mosque-label">
+            <RoughNotation
+              v-if="n.namesOfPeople"            
+              type="highlight"
+              :color="n.namesOfPeople === 'name' ? '#bddcff' : '#ffbdce'"
+              :is-show = true>
+              <span class="font-weight-bold">{{ n.name }}</span>
+            </RoughNotation>
+            <span v-else class="dimmed">{{ n.name }}</span>
 
-        <div class="pakistan-case-numbers-scrolly">                            
-          <span v-for="(n, i) in data.cured" :key="i + '-cured'" class="dot-pakistan-scrolly cured-scrolly-1" /> 
-          <span v-for="(n, i) in data.finTreatment" :key="i + '-finTreatment'" class="dot-pakistan-scrolly finTreatment-scrolly-1" /> 
-          <span v-for="(n, i) in data.onTreatment" :key="i + '-onTreatment'" class="dot-pakistan-scrolly onTreatment-scrolly-1" /> 
-          <span v-for="(n, i) in data.diagnosed" :key="i + '-diagnosed'" class="dot-pakistan-scrolly diagnosed-scrolly-1"/> 
-          <span v-for="(n, i) in data.undiagnosed" :key="i + '-undiagnosed'" class="dot-pakistan-scrolly undiagnosed-scrolly-1"/> 
+            <span class="mx-2"/>
+          </p>
         </div>
-      </v-col>  
+    
+        <div v-if="currentStep === '2'">        
+          <p v-for="(n, i) in mosquenames" :key="i + 'step2'" 
+            class="text--mosque-label">
+            <RoughNotation
+              v-if="n.language === 'arabic'"            
+              type="circle"
+              :strokeWidth="1"
+              color="#54ad67"
+              :is-show = true>
+              <span class="font-weight-bold">{{ n.name }}</span>
+            </RoughNotation>
+            <span v-else-if="n.namesOfPeople" class="dimmed">{{ n.name }}</span>
+            <span v-else class="dimmed">{{ n.name }}</span>
+
+            <span class="mx-2" style="font-weight: 500"/>
+          </p>
+        </div>    
+
+        <div v-if="currentStep === '3'">        
+          <p v-for="(n, i) in mosquenames" :key="i + 'step3'" 
+            class="text--mosque-label">
+            <RoughNotation
+              v-if="n.language === 'malay' || n.language === 'english'"            
+              type="box"
+              :strokeWidth="1"
+              color="#2D432B"
+              :is-show = true>
+              <span class="font-weight-bold">{{ n.name }}</span>
+            </RoughNotation>
+
+            <span 
+              v-else-if="n.namesOfPeople"
+              class="dimmed">
+              {{ n.name }}
+            </span>
+
+            <span 
+              v-else-if="n.language === 'arabic'"
+              class="dimmed">
+              {{ n.name }}
+            </span>              
+
+            <span v-else class="dimmed">
+              {{ n.name }}
+            </span>
+
+            <span class="mx-2" style="font-weight: 500"/>
+          </p>
+        </div>      
+
+        <div v-if="currentStep === '4'">        
+          <p v-for="(n, i) in mosquenames" :key="i + 'step4'" 
+            class="text--mosque-label">
+            <RoughNotation
+              v-if="n.indianMuslim"           
+              type="highlight"
+              color="#ffd3c3"
+              :is-show = true>
+              <span class="font-weight-bold">{{ n.name }}</span>
+            </RoughNotation>           
+
+            <span v-else class="dimmed">
+              {{ n.name }}
+            </span>
+
+            <span class="mx-2" style="font-weight: 500"/>
+          </p>
+        </div>                  
+
+        <div v-if="currentStep === '0'">                         
+          <p v-for="(n, i) in mosquenames" :key="i + 'step-default'" 
+            class="text--mosque-label">
+            <span>{{ n.name }}</span>
+            <span class="mx-2" style="font-weight: 500"/>
+          </p>
+        </div>
+      </v-col>     
+
       <v-col cols="12" md="4" class="scrolly__content">
 
-        <div class="step first" data-step="1">
+        <div class="step" data-step="0">
           <div class="text-block">
-            <p class="text--body-1 font-weight-bold">Screened</p>
-            <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
-            </p>
-            <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
-            </p>              
+            <p class="text--body-3 mb-0">
+              I look the liberty of arranging the mosque names in alphabetical order for this visualisation. Let's first look at the mosques that are <span class="text--body-2 font-tertiary font-weight-bold">named after people</span>.
+            </p>           
           </div>
         </div>
 
+        <div class="step" data-step="1">
+          <div class="text-block">
+            <p class="text--body-1 font-tertiary font-weight-bold">Masjid {name-of-person}</p>
+
+            <p class="text--body-3">
+              Some of the mosques are named after people of influence and/or had contributed their wealth, land or energy in establishing the mosque. 
+            </p>
+
+            <p class="text--body-3 mb-0">  
+              The names suggest that the people are of Arab, Indian and Malay descents. The former two probably landed on Singapore shores for purposes of trade but ended up staying longer. 
+            </p>           
+          </div>
+        </div>        
+
+        <div class="step first" data-step="1">
+          <div class="text-block">            
+            <p class="text--body-3">
+              <span class="text--body-2 font-tertiary font-weight-bold">Alkaff</span> and 
+              <span class="text--body-2 font-tertiary font-weight-bold">Ba'alwie</span> are famous Arab family surnames in Singapore. 
+              <span class="text--body-2 font-tertiary font-weight-bold">Ahmad Ibrahim</span> was a Member of Parliament of Sembawang Nee Soon in 1959 who'd contributed to the mosque during his term. 
+            </p>
+
+            <div class="text-block-legend my-3">
+              <p class="text--body-3 ml-2 mb-2">
+                <span style="background-color: #ffbdce">women names</span> 3 mosques
+              </p>
+              <p class="text--body-3 ml-2 mb-2">            
+                <span style="background-color: #bddcff">men names</span> 25 mosques
+              </p>                
+            </div>
+
+            <p class="text--body-3 mb-0">
+              Women represent! There are 3 mosques named after women benefactors. The prefix  
+              <span class="text--body-2 font-tertiary font-weight-bold">Hajjah</span> is a form of address for a Muslim woman who has performed her Hajj pilgrimage to Mecca.
+            </p>
+          </div>
+        </div>         
+
         <div class="step first" data-step="2">
           <div class="text-block">
-            <p class="text--body-1 font-weight-bold">Diagnosed</p>
+            <p class="text--body-1 font-tertiary font-weight-bold">Named after Virtues (in Arabic)</p>
+            
             <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
-            </p>
+              Then, there are mosques that are named after good virtues and values but in the Arabic language. You can distinguish them by the tell-tale prefix of ‘Al’ or (aliflam) which translates to the article ‘the’ in Arabic.
+            </p>  
+
             <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
+              For instance, <span class="text--body-2 font-tertiary font-weight-bold">Al-Muttaqin</span> means ‘<em>The</em> pious people who are ever aware of God the Almighty’. 
             </p>              
           </div>
         </div>
 
         <div class="step first" data-step="3">
           <div class="text-block">
-            <p class="text--body-1 font-weight-bold">Put on treatment</p>
+            <p class="text--body-1 font-tertiary font-weight-bold">Named after places or landmarks nearby</p>
+
             <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
+              These are the handful that are named after places or landmarks nearby. 
+              <span class="text--body-2 font-tertiary font-weight-bold">Masjid Bencoolen</span>
+              is literally at the Bencoolen MRT station!
             </p>
+            
             <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
-            </p>              
+              <span class="text--body-2 font-tertiary font-weight-bold">Masjid Pusara Aman</span> which signposts its own location sits just off Lim Chu Kang Road, near the Muslim cemetery.
+            </p>
+
+            <p class="text--body-3">              
+              And, no, 
+              <span class="text--body-2 font-tertiary font-weight-bold">
+                Masjid Hang Jebat
+              </span> 
+              was not named after the legendary fallen Malaccan hero. Rather, it’s named after the road that it sits on: Jalan Hang Jebat. 
+            </p>       
+          </div>
+        </div>
+
+        <div class="step first" data-step="3">
+          <div class="text-block">
+            <p class="text--body-3">
+              Of these annotated ones, I feel a slight affinity to mosques with Malay origins in their name. It brings back a slice of history to the present day. 
+            </p>
+
+            <p class="text--body-3">
+              Like the name <span class="text--body-2 font-tertiary font-weight-bold">Masjid Tasek Utara</span> which translates to Masjid North Lake! Even <em>‘tasek’</em> is spelt in old Malay with an ‘e’ instead of ‘i’. I checked the mosque on the map; it’s concrete buildings all around and no sign of any lakes nearby. 
+            </p>
           </div>
         </div>
 
         <div class="step first" data-step="4">
           <div class="text-block">
-            <p class="text--body-1 font-weight-bold">Cured</p>
+            <p class="text--body-1 font-tertiary font-weight-bold">Names with roots to the Indian Muslim community</p>
+
             <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
+              Islam in Singapore has always been associated with the Malays but that’s a big misconception -- religion is universal.
             </p>
-            <p class="text--body-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis consectetur ipsa fugit itaque minima ea repellat distinctio sint soluta nisi nihil illo, culpa minus quia maxime vitae! Doloremque, voluptate.
-            </p>              
+
+            <p class="text--body-3 mb-0">            
+              This is a shoutout to the Indian Muslim community in Singapore. These mosques bear historial importance to the Indian Muslims who came to our shores, some 
+              <a href="https://www.straitstimes.com/singapore/mosque-for-the-tamil-milkman" target="_blank"> two centuries ago as moneylenders or traders</a>. 
+            </p>
           </div>
-        </div>                                       
-      </v-col>     
+        </div>
+
+        <div class="step first" data-step="4">
+          <div class="text-block">
+            <p class="text--body-3">
+              <span class="text--body-2 font-tertiary font-weight-bold">Masjid Jamae Chulia</span> 
+              was named after the Chulias, Tamil Muslims from India's south-eastern coast. This mosque is also referred to as the Paalkaara <em>Kadai Palli</em> (Milkman's Shop Mosque), <em>Periya Palli</em> (Big Mosque) and <em>Chulia Palli</em> (Chulia Mosque).
+            </p>
+            
+            <p class="text--body-3 mb-0">
+              And the sermons for Friday prayers here are still conducted in Tamil today. 
+            </p>
+          </div>
+        </div> 
+      </v-col>  
+
     </v-row>
   </v-container> 
 </template>
@@ -80,20 +236,13 @@ export default {
   components: {},
   data() {
     return {
-      publicPath: process.env.BASE_URL,
-      data: {
-        screened: 315, 
-        undiagnosed: 129,
-        diagnosed: 80,
-        onTreatment: 60,
-        finTreatment: 34,
-        cured: 11,
-        selectedPakistanCases: '',
-      }
+      currentStep: '0',
+      mosquenames: null
     };
   },
   mounted() {
     this.initScrollama();    
+    this.loadData();
   },  
   methods: {
     initScrollama() {
@@ -115,30 +264,12 @@ export default {
     },
     handleStepEnter({ element }) {
       const step = d3.select(element).attr('data-step');
-
-      // change the tabs
-      d3.selectAll('p.pakistan-tab').classed('active-selection', false)
-      d3.select(`p.pakistan-step-${step}`).classed('active-selection', true);
-
-      // change the dots
-      switch (step) {
-        case '1':
-          this.selectedPakistanCases = 'span.dot-pakistan-scrolly'
-          break;     
-        case '2':
-          this.selectedPakistanCases = 'span.diagnosed-scrolly-1, span.onTreatment-scrolly-1, span.finTreatment-scrolly-1, span.cured-scrolly-1'
-          break;
-        case '3':
-          this.selectedPakistanCases = 'span.onTreatment-scrolly-1, span.finTreatment-scrolly-1, span.cured-scrolly-1'
-          break;
-        case '4':
-          this.selectedPakistanCases = 'span.cured-scrolly-1'
-          break;     
-      }
-      const pakistanCases = d3.select('.pakistan-case-numbers-scrolly');
-      pakistanCases.selectAll('span.dot-pakistan-scrolly').style('background-color', '#C4C4C4');      
-      pakistanCases.selectAll(`${this.selectedPakistanCases}`).style('background-color', '#425D70');
-    },    
+      this.currentStep = step; 
+      console.log(step)
+    },
+    async loadData() {
+      this.mosquenames = await d3.csv('/data/mosque-names.csv');
+    }, 
   },
 }
 </script>
@@ -147,35 +278,7 @@ export default {
 .text-block {
   background-color: white;
   color: #2E2E2E;
-  padding: 36px;
-}
-
-.casestudy-scrolly {
-  div {
-    p.pakistan-tab {
-      display: inline-block;
-      padding: 4px 12px;
-      margin-bottom: 16px;
-      margin-right: 16px; 
-      border-radius: unset;
-      border: 1px solid #2E2E2E;
-      background-color: transparent;
-    }
-
-    p.active-selection {
-      background-color: #425D70;
-      color: #FAFAFA;
-    }
-  }  
-}
-
-.dot-pakistan-scrolly {
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  display: inline-block;
-  background-color: #425D70;
-  margin-right: 10px;
+  padding: 16px;
 }
 
 .scrolly__overlay {
@@ -190,25 +293,29 @@ export default {
 
 .step {
   margin: 0 auto 2rem auto;
-  // border: 2px solid #104E8B;
   display: flex;
   justify-content: center;
   align-items: center;    
-}
-
-.step:first-child {
-  margin-top: calc(25vh);
 }
 
 .scrolly__sticky {
   justify-content: center;  
   align-items: center;
   position: sticky;
-  // top: 50%;
-  // transform: translate(0, -50%);
-  top: calc(64px + 12px);
+  top: 24px;
   z-index: 0;
   height: calc(100vh - 64px);
 }
 
+.text--mosque-label {
+  font-weight: 400;
+  font-size: 12px;
+  display: inline-block;
+  font-family: 'Inconsolata', monospace;
+  line-height: 8px;
+}
+
+.dimmed {
+  opacity: 0.18;
+}
 </style>

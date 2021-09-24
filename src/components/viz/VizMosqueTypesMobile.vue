@@ -21,7 +21,6 @@
     </div>
 
     <div class="legend-mosque-type">
-      <!-- <p class="text--caption mb-2">Mosques by landuse type:</p> -->
       <div 
         v-for="(j, i) in legendTypes"
         :key="i + '-legend'">
@@ -32,9 +31,9 @@
   </v-container>
 
   <v-container>
-    <div class="chartwrapper-mosque-types">
-      <svg id="svg-mosque-types" />
-      <div class="tooltip-wrapper"/>
+    <div class="chartwrapper-mosque-types-mobile">
+      <svg id="svg-mosque-types-mobile" />
+      <div class="tooltip-wrapper-mobile"/>
     </div>
   </v-container>
 </div>
@@ -65,22 +64,13 @@ export default {
   },
   computed: {
     height() {
-      if (this.$vuetify.breakpoint.smAndDown) {
-        return 350;
-      } else if (this.$vuetify.breakpoint.xlOnly) {
-        return window.innerHeight * 0.55;
-      }
-      return window.innerHeight * 0.7;
+      return 800;
     },
     width() {
-      const width = d3.select('.chartwrapper-mosque-types').node().getBoundingClientRect().width
-        return width;
+      return 350
     },
     chartMargin() {
-      if (this.$vuetify.breakpoint.smAndDown) {
-        return { top: 30, right: 10, bottom: 10, left: 10 };
-      }
-      return { top: 50, right: 10, bottom: 10, left: 50 };
+      return { top: 30, right: 10, bottom: 30, left: 10 };
     },    
     chartSettings() {
       return {
@@ -101,7 +91,7 @@ export default {
       });           
     },
     initChart() {
-      const chartSVG = d3.select('#svg-mosque-types');
+      const chartSVG = d3.select('#svg-mosque-types-mobile');
       // draw base
       chartSVG
         .attr('width', this.width)
@@ -112,50 +102,40 @@ export default {
         .attr('class', 'chartarea-type').attr('transform', `translate(50, ${this.chartMargin.top})`)
     }, 
     colorByLanduse() {
-      // const LanduseColor = {
-      //   Wakaf: '#2E8190', 
-      //   TOL: '#D2BFDA',
-      //   MBMF: '#A1A9CC',
-      //   Leasehold: '#6896B4',
-      //   Others: '#F8D9E6'
-      // }
-      // d3.selectAll('circle.mosque-type')
-      //   .attr('fill', d => LanduseColor[d.type]);
-
       const svg = d3.select('#svg-mosque-type');
       svg.selectAll('circle.mosque-type').attr('fill', '#ffffff');      
     },    
     drawBeeswarm(data) {
-      const width = this.chartSettings.innerWidth - 100;
+      // const width = this.chartSettings.innerWidth - 100;
       const height = this.chartSettings.innerHeight;
-      const xScale = d3.scaleLinear().domain([1819.5, 2020.5]).range([0, width]);
-      const selectChart = d3.select('#svg-mosque-types').select('g.chartarea-type');
+      const yScale = d3.scaleLinear().domain([1819.5, 2020.5]).range([0, height]);
+      const selectChart = d3.select('#svg-mosque-types-mobile').select('g.chartarea-type');
 
       selectChart
-        .append('g').attr('class', 'XAxis')
-        .attr('transform', `translate(0, ${height - 50})`)
+        .append('g').attr('class', 'YAxis')
+        .attr('transform', `translate(0, 0)`)
         .call(
           d3
-            .axisBottom(xScale)
+            .axisLeft(yScale)
             .tickFormat(d3.format('d'))
-            .tickSize(5)
+            .tickSize(3)
             .tickSizeOuter(0)
         );
-      d3.selectAll('.XAxis > .tick line').attr('transform', 'translate(0, -5)');
+      d3.selectAll('.YAxis > .tick line').attr('transform', 'translate(0, -1)');
 
      const circles = selectChart
         .selectAll('circle.mosque-type')
         .data(data).enter()
         .append('circle')
         .attr('class', 'mosque-type')
-        .attr('cx', this.width / 2 )
-        .attr('cy', this.height / 2)
+        .attr('cx', this.width / 2.5 )
+        .attr('cy', this.height / 2.5)
         .attr('fill', '#ffffff')
         .attr('stroke', 'black')          
-        .attr('r', 20);
+        .attr('r', 15);
 
       circles
-      .on('mouseenter.tooltip', function mouseenter(event, d) {
+      .on('click', function mouseenter(event, d) {
           d3
           .select(this)
           .attr('stroke', '#2e2e2e')
@@ -164,9 +144,9 @@ export default {
 
         const selectedBubble = d3.select(this).node().getBoundingClientRect();
         
-        const container = d3.select('.chartwrapper-mosque-types').node().getBoundingClientRect();
+        const container = d3.select('.chartwrapper-mosque-types-mobile').node().getBoundingClientRect();
 
-        const tooltip = d3.select('.tooltip-wrapper').node().getBoundingClientRect();
+        const tooltip = d3.select('.tooltip-wrapper-mobile').node().getBoundingClientRect();
 
         const posLeft =
           selectedBubble.left > document.body.clientWidth / 2
@@ -178,7 +158,7 @@ export default {
             ? selectedBubble.bottom - container.top - tooltip.height // bottom
             : selectedBubble.top - container.top; // top
 
-        d3.select('.tooltip-wrapper')
+        d3.select('.tooltip-wrapper-mobile')
           .style('top', `${posBottom}px`)
           .style('left', `${posLeft}px`)
           .style('visibility', 'visible')
@@ -187,21 +167,24 @@ export default {
             <p class="text--caption mb-0">Land type: ${d.type}</p>
             <p class="text--caption mb-0">Established in: ${d.year_built}</p>          
           `);
-      })
-      .on('mouseleave.design', function mouseleave() {
-        const svg = d3.select('#svg-mosque-types');
-        svg
-          .selectAll('circle.mosque-type').attr('opacity', 0);
 
         setTimeout(function(){ 
-          d3.select('.tooltip-wrapper').style('visibility', 'hidden');
-        }, 5000);
+          d3.select('.tooltip-wrapper-mobile').style('visibility', 'hidden');
+        }, 5000);          
       });
 
+      // .on('mouseleave.design', function mouseleave() {
+      //   const svg = d3.select('#svg-mosque-types-mobile');
+      //   svg
+      //     .selectAll('circle.mosque-type').attr('opacity', 0);
+
+
+      // });
+
       d3.forceSimulation()
-        .force('x', d3.forceX(d => xScale(d.year_built)).strength(1.2))
-        .force('y', d3.forceY((d, i) => this.chartSettings.innerHeight / 2.5 + 2 * (i % 2) * 10).strength(0.1))
-        .force('collision', d3.forceCollide().radius(25))
+        .force('x', d3.forceY(d => yScale(d.year_built)).strength(0.8))
+        .force('y', d3.forceX((d, i) => this.chartSettings.innerWidth / 2.5 + 2 * (i % 2) * 25).strength(0.08))
+        .force('collision', d3.forceCollide().radius(18))
         .nodes(data)
         .alpha(0.7)
         .on('tick', function updateNodes() {
@@ -212,7 +195,7 @@ export default {
             .attr('cy', d => d.y);
         })
         .on("end", function (){
-          const rc = rough.svg(d3.select('#svg-mosque-types').node())
+          const rc = rough.svg(d3.select('#svg-mosque-types-mobile').node())
           // circle to rough circle
           const allCircles = d3.selectAll('circle.mosque-type')
           allCircles.each(function() {
@@ -232,7 +215,7 @@ export default {
               return LanduseColor[type]
             }
 
-            let options = { fill: fillColor(type), fillWeight: 1, fillStyle: 'cross-hatch', roughness: 1 };
+            let options = { fill: fillColor(type), fillWeight: 0.5, fillStyle: 'cross-hatch', roughness: 1 };
 
             const rCircle = rc.circle(
               +aCircle.attr("cx"), 
@@ -253,7 +236,7 @@ export default {
         });
     },  
     filterOpacity(selected, ) {
-      const svg = d3.select('#svg-mosque-types');
+      const svg = d3.select('#svg-mosque-types-mobile');
 
       if (selected === 'reset') {
         svg.selectAll('.mosque-sketch').attr('opacity', '1');
@@ -293,12 +276,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chartwrapper-mosque-types {
+.chartwrapper-mosque-types-mobile {
   position: relative;
 }
 
-.tooltip-wrapper {
-  // border: 1px solid #3e3e3e;
+.tooltip-wrapper-mobile {
   background: #f5f5f5;
   position: absolute;
   visibility: hidden;
@@ -353,7 +335,7 @@ export default {
 </style>
 
 <style lang="scss">
-#svg-mosque-types {
+#svg-mosque-types-mobile {
   text {
     font-family: 'Inconsolata', monospace;
     font-size: 0.9rem;

@@ -1,8 +1,7 @@
 <template>
   <div>
     <p class="text--body-3 font-tertiary mb-1">
-      No. of Muslims<br/>
-      (in thousands)
+      No. of Muslims (in thousands)
     </p>
     <div 
       v-for="(j, i) in mapLegend"
@@ -31,72 +30,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.map-cluster {
-  position: relative;
-
-  .map-legend-wrapper-west {
-    position: absolute;
-    top: 0px;
-    left: 96px;
-    
-    .crosshatch {
-      width: 20px;
-      height: 20px;
-      background-color: #ffd3c3;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-  }
-
-  .map-legend-wrapper-east {
-    position: absolute;
-    top: 0px;
-    right: 48px;
-    
-    .crosshatch {
-      width: 20px;
-      height: 20px;
-      background-color: #ffd3c3;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-  }
-
-  .map-legend-wrapper-north {
-    position: absolute;
-    bottom: 48px;
-    left: 48px;
-    
-    .crosshatch {
-      width: 20px;
-      height: 20px;
-      background-color: #ffd3c3;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-  }  
-
-  .map-legend-wrapper-south {
-    position: absolute;
-    bottom: 48px;
-    right: 48px;
-    
-    .crosshatch {
-      width: 20px;
-      height: 20px;
-      background-color: #ffd3c3;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-  }    
-
-  .map-tooltip-wrapper {
-    border: 1px solid #2e2e2e; 
-    padding: 8px;
-  }
+.crosshatch {
+  width: 20px;
+  height: 20px;
+  background-color: #ffd3c3;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 </style>

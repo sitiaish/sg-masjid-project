@@ -21,12 +21,17 @@ export default {
   computed: {
     height() {
       if (this.$vuetify.breakpoint.smAndDown) {
-        return 350;
+        return 380;
+      } else if (this.$vuetify.breakpoint.xlOnly) {
+        return window.innerHeight * 0.6;
       }
-      return window.innerHeight * 0.95;
+      return window.innerHeight * 0.9;
     },
     circleRadius() {
-      return this.height / 35
+      if (this.$vuetify.breakpoint.smAndDown) {
+        return this.height / 20;
+      }      
+      return this.height / 27
     },
     width() {
       const width = d3.select('.wrapper__map-sg-east').node().getBoundingClientRect().width

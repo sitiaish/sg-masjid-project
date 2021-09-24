@@ -1,9 +1,9 @@
 <template>
-  <div class="section-cluster-s my-16">
+  <div class="section-cluster-s my-12 my-md-16">
     <v-container class="map-cluster outer">    
       <v-row align="center" justify="center" no-gutters>
-        <v-col cols="4">
-          <div class="my-10">
+        <v-col cols="12" md="4">
+          <div class="my-md-10">
             <p class="text--h4 mb-0">South side</p>
             <p class="text--body-2">20 mosques</p>
 
@@ -25,31 +25,28 @@
               Hover over the map areas to see the mosques in the South cluster.
             </p> -->
 
-            The {{ southItem.location }} planning area. The 2015 Census recorded {{ southItem.muslimPop }} thousand Muslims here. There are 
+            <!-- The {{ southItem.location }} planning area. The 2015 Census recorded {{ southItem.muslimPop }} thousand Muslims here. There are 
             {{ southItem.mosqueCount }}. 
             
-            {{ southItem.mosqueList }}
+            {{ southItem.mosqueList }} -->
 
           </div>  
         </v-col>        
-        <v-col cols="5" offset="1">
+        <v-col cols="12" md="5" offset-md="1">
           <VizMapSgSouth @update-south-desc="updateSouthDesc" />
         </v-col>      
       </v-row>
-      <MapLegendCluster class="map-legend-wrapper-south"/>
     </v-container>  
   </div>
 </template>
 
 <script>
 import VizMapSgSouth from '@/components/viz/VizMapSgSouth';
-import MapLegendCluster from '@/components/viz/MapLegendCluster';
 
 export default {
   name: 'SectionMapSouth',
   components: {
     VizMapSgSouth,
-    MapLegendCluster
   },
   data() {
     return {
@@ -70,24 +67,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.map-cluster {
-  position: relative;
-  .map-legend-wrapper-south {
-    position: absolute;
-    bottom: 48px;
-    right: 48px;
-    
-    .crosshatch {
-      width: 20px;
-      height: 20px;
-      background-color: #ffd3c3;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-  }    
-}
-</style>
-
