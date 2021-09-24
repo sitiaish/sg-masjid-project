@@ -133,7 +133,10 @@ export default {
     z-index: 5;
     @media #{map-get($display-breakpoints, 'sm-and-down')} {
       left: 87%;
-    }          
+    }         
+    @media #{map-get($display-breakpoints, 'xl-only')} {
+      left: 15%;
+    }         
   }  
 }
 
