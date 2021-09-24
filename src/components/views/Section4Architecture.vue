@@ -12,11 +12,11 @@
         </v-col>
 
         <v-col cols="12" md="8">
-          <div class="archi-disclaimer mb-8">
+          <!-- <div class="archi-disclaimer mb-8">
             <p class="text--body-2 mb-0">
               Note: I am not trained as an architect or a historian. This is a chill project to collect data about mosques in Singapore and make a data story from it.
             </p>
-          </div>
+          </div> -->
 
           
           <p class="text--body-2">
