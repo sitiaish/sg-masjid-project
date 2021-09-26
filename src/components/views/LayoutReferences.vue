@@ -86,7 +86,7 @@
 
   // children
   &__panel-content {
-    border-top: 1px solid #ffd3c3;
+    border-top: 2px solid #f5f5f5;
   }
 
   &__content {

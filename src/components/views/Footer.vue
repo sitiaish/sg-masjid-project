@@ -10,7 +10,8 @@
     <div class="page-footer-content">
       <v-container class="px-sm-8 py-0 pa-md-0">  
         <div class="mb-8 text-center">  
-            <p class="text-body text-center">A data story project by Siti Aishah. </p>
+            <img src="@/assets/logo.png" width="75px" class="mb-2">
+            <p class="text-body text-center mb-1">A data story project by Siti Aishah. </p>
             <p class="text-body text-center">I'm open to collab for any webdev work or dataviz projects!</p>
             <p class="text-body text-center font-weight-bold text--fes-blue mb-4">Find me here</p>            
           <div class="fes-socials text-center text-md-left">
@@ -67,6 +68,11 @@ export default {
 
   .page-footer-content {
     padding-top: 96px;
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
  }
 
