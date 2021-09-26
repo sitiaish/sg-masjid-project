@@ -17,9 +17,9 @@
 
         <div class="map-tooltip-wrapper">
           <div v-if="northItem.location !== 'init' ">
-            <p class="text--reference mb-2"><b>Planing area:</b> {{ northItem.location }} </p>
+            <p class="text--reference mb-2"><b>Planing area:</b> <span style="text-transform: capitalize">{{ northItem.location }}</span> </p>
             <div v-if="northItem.muslimPop !== 0">
-              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{northItem.muslimPop === 0 ? 0 : northItem.muslimPop + 'thousand'}} </p>
+              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{northItem.muslimPop === 0 ? 0 : northItem.muslimPop + ' thousand'}} </p>
               <p class="text--reference mb-2"><b>Mosque count:</b> {{ northItem.mosqueCount }} </p>
               <p class="text--reference mb-0 font-italic">{{ northItem.mosqueList }} </p>
             </div>
@@ -60,8 +60,11 @@ export default {
   methods: {
     updateNorthDesc(e) {
       this.northItem = e;
+      this.northItem.location = (this.northItem.location.replace(/-/g, ' '));
       this.northItem.mosqueCount = this.northItem.mosque ? this.northItem.mosque.length : 0;
-      this.northItem.mosqueList = this.northItem.mosque
+      if (e.mosque !== 0) {
+        this.northItem.mosqueList = this.northItem.mosque.join(', ')
+      }          
     }
   }
 };

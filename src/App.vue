@@ -4,8 +4,8 @@
     <Section1Names />
     <Section2Land />
     <Section3Towns />
-    <!-- <Section4Architecture />  -->
     <SectionConclusion />
+    <Footer /> 
   </v-app>
 </template>
 
@@ -14,7 +14,7 @@ import SectionIntro from '@/components/views/SectionIntro'
 import Section1Names from '@/components/views/Section1Names'
 import Section2Land from '@/components/views/Section2Land'
 import Section3Towns from '@/components/views/Section3Towns'
-// import Section4Architecture from '@/components/views/Section4Architecture'
+import Footer from '@/components/views/Footer'
 import SectionConclusion from '@/components/views/SectionConclusion'
 
 export default {
@@ -24,8 +24,8 @@ export default {
     Section1Names,
     Section2Land,
     Section3Towns,
-    // Section4Architecture,
-    SectionConclusion            
+    SectionConclusion,
+    Footer
   },
 };
 </script>

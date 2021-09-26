@@ -265,10 +265,9 @@ export default {
     handleStepEnter({ element }) {
       const step = d3.select(element).attr('data-step');
       this.currentStep = step; 
-      console.log(step)
     },
     async loadData() {
-      this.mosquenames = await d3.csv('/data/mosque-names.csv');
+      this.mosquenames = await d3.csv('data/mosque-names.csv');
     }, 
   },
 }
@@ -312,7 +311,7 @@ export default {
   font-size: 12px;
   display: inline-block;
   font-family: 'Inconsolata', monospace;
-  line-height: 8px;
+  line-height: 7.5px;
 }
 
 .dimmed {

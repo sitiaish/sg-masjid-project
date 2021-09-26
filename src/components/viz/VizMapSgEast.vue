@@ -136,10 +136,10 @@ export default {
           self.item = {
             location: 'init',
             muslimPop: '',
-            mosque: '',
+            mosque: 0,
           };
 
-          self.$emit('update-west-desc', self.item);              
+          self.$emit('update-east-desc', self.item);              
           // d3.selectAll('.western-islands').selectAll('g.town-sketch').selectAll('path').attr('stroke', '#ECECEC').attr('stroke-width', 1);
         });
               
@@ -182,7 +182,7 @@ export default {
         .attr('preserveAspectRatio', 'xMinYMid')
         .call(this.resize, aspect);
 
-      d3.select(window).on('resize.test', () => {
+      d3.select(window).on('resize', () => {
         this.resize(svg, aspect);
       });
     },

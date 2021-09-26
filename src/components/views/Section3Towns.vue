@@ -16,8 +16,11 @@
       </p>
 
       <p class="text--body-2">
-        This reduced the initial six clusters down to four.
+        This reduced the initial six clusters down to four as shown in the map below
       </p>
+
+      <img src="@/assets/muis-map.png" width="80%">
+      <p class="text--caption text-center mb-8">A screengrab from <a href="https://www.muis.gov.sg/mosque" target="_blank">MUIS' website</a> for the mosque clusters</p>
         
       <p class="text--body-2">
         The North, East and West clusters have similar archetypes. Each comprises approximately equal numbers of MBMF and non-MBMF mosques  in a strategic way to better 
@@ -41,6 +44,7 @@
         @click.stop="dialog = true"
         class="map-button"
       >
+      Legend
         <v-icon>mdi-help-circle</v-icon>
       </v-btn>
 
@@ -132,12 +136,17 @@ export default {
     left: 64px;
     z-index: 5;
     @media #{map-get($display-breakpoints, 'sm-and-down')} {
-      left: 87%;
+      left: 85%;
     }         
     @media #{map-get($display-breakpoints, 'xl-only')} {
       left: 15%;
     }         
   }  
+}
+
+img {
+  display: block;
+  margin: 16px auto;
 }
 
 </style>

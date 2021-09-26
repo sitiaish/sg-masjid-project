@@ -11,7 +11,7 @@
           </p>
 
           <p class="text--body-3">
-            The mosques in the West cluster comprises of n MBMF mosques. One of the largest is Masjid Assyakirin which has been serving the people in Boon Lay, Taman Jurong and Jurong West since 1978. Until recently in 2019, Masjid Maarof was built in Jurong West to ease the <a href="https://www.straitstimes.com/singapore/maarof-mosque-in-jurong-west-to-be-completed-in-time-for-hari-raya-haji-in-september" target="_blank">overcrowding at Assyakirin</a>. 
+            One of the largest is Masjid Assyakirin which has been serving the people in Boon Lay, Taman Jurong and Jurong West since 1978. Until recently in 2019, Masjid Maarof was built in Jurong West to ease the <a href="https://www.straitstimes.com/singapore/maarof-mosque-in-jurong-west-to-be-completed-in-time-for-hari-raya-haji-in-september" target="_blank">overcrowding at Assyakirin</a>. 
           </p>
 
           <p class="text--body-3">
@@ -21,9 +21,9 @@
 
         <div class="map-tooltip-wrapper">
           <div v-if="westItem.location !== 'init' ">
-            <p class="text--reference mb-2"><b>Planing area:</b> {{ westItem.location }} </p>
+            <p class="text--reference mb-2"><b>Planing area:</b> <span style="text-transform: capitalize">{{ westItem.location }}</span> </p>
             <div v-if="westItem.mosqueCount !== 0">
-              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b> {{westItem.muslimPop === 0 ? 0 : westItem.muslimPop + 'thousand'}}</p>
+              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b> {{westItem.muslimPop === 0 ? 0 : westItem.muslimPop + ' thousand'}}</p>
               <p class="text--reference mb-2"><b>Mosque count:</b> {{ westItem.mosqueCount }} </p>
               <p class="text--reference mb-0 font-italic">{{ westItem.mosqueList }} </p>
             </div>
@@ -48,13 +48,11 @@
 
 <script>
 import VizMapSgWest from '@/components/viz/VizMapSgWest';
-// import MapLegendCluster from '@/components/viz/MapLegendCluster';
 
 export default {
   name: 'SectionMapWest',
   components: {
     VizMapSgWest,
-    // MapLegendCluster
   },
   data() {
     return {
@@ -64,8 +62,11 @@ export default {
   methods: {
     updateWestDesc(e) {
       this.westItem = e;
+      this.westItem.location = (this.westItem.location.replace(/-/g, ' '));
       this.westItem.mosqueCount = this.westItem.mosque ? this.westItem.mosque.length : 0;
-      this.westItem.mosqueList = this.westItem.mosque
+      if (e.mosque !== 0) {
+        this.westItem.mosqueList = this.westItem.mosque.join(', ')
+      }   
     }
   }
 };

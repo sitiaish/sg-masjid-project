@@ -129,7 +129,7 @@ export default {
           self.item = {
             location: 'init',
             muslimPop: '',
-            mosque: '',
+            mosque: 0,
           };
 
           self.$emit('update-south-desc', self.item);              
@@ -172,7 +172,7 @@ export default {
         .attr('preserveAspectRatio', 'xMinYMid')
         .call(this.resize, aspect);
 
-      d3.select(window).on('resize.test', () => {
+      d3.select(window).on('resize', () => {
         this.resize(svg, aspect);
       });
     },

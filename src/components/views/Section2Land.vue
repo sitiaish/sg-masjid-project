@@ -39,7 +39,7 @@
       </p>
 
       <p class="text--body-2 mb-0">
-       Located along Telok Blangah Road (near Vivo City Shopping Mall), this mosque actually belongs to the Johor Sultanate, and hence administered by Jabatan Agama Islam Negeri Johor (JAIJ), the religious governing body of Johor. Its <i>wakaf</i> status comes from the fact that it stands on the grounds of the palace first built for Temenggong Abdul Rahman in 1824, called <i>Istana Lama</i> (old palace). Today, this site houses the mosque and the tombs of Temenggong Abdul Rahman and his son, Daeng Ibrahim.
+       Located along Telok Blangah Road (near Vivo City Shopping Mall), this mosque actually belongs to the Johor Sultanate, and hence <a href="https://berita.mediacorp.sg/mobilem/singapura/masjid-temenggong-di-telok-blangah-dibuka-semula-kepada-orang/4459672.html" target="_blank">administered by Jabatan Agama Islam Negeri Johor (JAIJ)</a>, the religious governing body of Johor. Its <i>wakaf</i> status comes from the fact that it stands on the grounds of the palace first built for Temenggong Abdul Rahman in 1824, called <i>Istana Lama</i> (old palace). Today, this site houses the mosque and the tombs of Temenggong Abdul Rahman and his son, Daeng Ibrahim.
       </p>      
     </v-container>
 
@@ -66,7 +66,10 @@
           </template>
 
         <template v-slot:opposite>
-          <img :src="require('@/assets/' + `${n.img}`)" width="100%"/>
+          <div class="landing-mosque">
+            <img :src="require('@/assets/' + `${n.img}`)" width="100%"/>
+            <p class="text--caption">{{ n.caption }}</p>
+          </div>
         </template>
             
           <v-card class="elevation-0 pa-3">
@@ -94,10 +97,10 @@ export default {
   data() {
     return {
       mbmfPhases: [
-        { phase: 1, year: '1976 - 1980', name: 'Pioneers-Grand mosques', example: 'Some examples are Masjid Assyakirin and Masjid Al-Muttaqin. As the first few of the many to come, these mosques are massive.', img: 'assyakirin-wire-1.svg'},
-        { phase: 2, year: '1981 - 1995', name: 'Nusantara', example: 'As the name suggests, some mosques like Masjid Alkaff Kampung Melayu and Masjid Darul Makmur among others, bear influence of Nusantara in their motifs and designs.', img: 'ghufran-pink.png'},   
-        { phase: 3, year: '1996 - 2005', name: 'Contemporary Singapore Model of Compact Urban Mosques', example: 'Examples: Masjid Al-Istighfar and Masjid Assyafaah', img: 'assyafaah.svg'},       
-        { phase: 4, year: '2006 - now', name: 'Performance-Friendly', example: 'These mosques feature environmentally-friendly features. Masjid Al-Mawaddah even achieved the Greenmark Certification from the Building and Construction Authority.', img: 'mawaddah-green.svg'},  
+        { phase: 1, year: '1976 - 1980', name: 'Pioneers-Grand mosques', example: 'Some examples are Masjid Assyakirin and Masjid Al-Muttaqin. As the first few of the many to come, these mosques are massive.', img: 'assyakirin.svg', caption: 'Masjid Assyakirin, Taman Jurong'},
+        { phase: 2, year: '1981 - 1995', name: 'Nusantara', example: 'As the name suggests, some mosques like Masjid Alkaff Kampung Melayu and Masjid Darul Makmur among others, bear influence of Nusantara in their motifs and designs.', img: 'ghufran-pink.png', caption: 'Masjid arul Ghufran, Tampines'},   
+        { phase: 3, year: '1996 - 2005', name: 'Contemporary Singapore Model of Compact Urban Mosques', example: 'Examples: Masjid Al-Istighfar and Masjid Assyafaah', img: 'assyafaah.svg', caption: 'Masjid Assyafaah, Sembawang'},       
+        { phase: 4, year: '2006 - now', name: 'Performance-Friendly', example: 'These mosques feature environmentally-friendly features. Masjid Al-Mawaddah even achieved the Greenmark Certification from the Building and Construction Authority.', img: 'mawaddah-green.svg', caption: 'Masjid Al-Mawaddah, Buangkok'},  
       ]
     }
   }
@@ -116,5 +119,22 @@ export default {
     align-items: center;
     margin: 24px 0;
   }
+
+  .landing-mosque {
+    position: relative;
+
+    img {
+      margin: 8px;
+    }
+
+    p {
+      position: absolute;
+      bottom: 0;
+      left: -16px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      display: inline;
+    }
+  }  
 }
 </style>

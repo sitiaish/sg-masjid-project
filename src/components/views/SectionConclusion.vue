@@ -179,7 +179,15 @@
 
       <p class="text--body-2">
         But whatever it is, this project serves to remember and data-visualise the remaining mosques that still stand in Singapore in 2021. Who knows how the landscape will change again over time? 
-      </p>       
+      </p>      
+
+      <div class="landing-mosque mb-12 mb-md-0">
+        <img src="@/assets/delta.svg" width="100%"/>
+        <p class="text--caption">
+          Masjid Kampong Delta, River Valley
+        </p>
+      </div>      
+       
     </v-container>
 
     <LayoutReferences />
@@ -272,4 +280,25 @@ div.review-2 {
     }
   }  
 
+.landing-mosque {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    width: 100%;
+  }      
+
+  img {
+    display: block;
+  }
+
+  p {
+    position: absolute;
+    bottom: 0;
+    left: -24px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    display: inline;
+  }
+}
 </style>

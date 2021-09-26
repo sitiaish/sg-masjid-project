@@ -22,9 +22,9 @@
 
           <div class="map-tooltip-wrapper">
             <div v-if="southItem.location !== 'init' ">
-              <p class="text--reference mb-2"><b>Planing area:</b> {{ southItem.location }} </p>
+              <p class="text--reference mb-2"><b>Planing area:</b> <span style="text-transform: capitalize">{{ southItem.location }}</span> </p>
               <div v-if="southItem.mosqueCount !== 0">
-                <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{ southItem.muslimPop === 0 ? 0 : southItem.muslimPop + 'thousand' }} </p>
+                <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{ southItem.muslimPop === 0 ? 0 : southItem.muslimPop + ' thousand' }} </p>
                 <p class="text--reference mb-2"><b>Mosque count:</b> {{ southItem.mosqueCount }} </p>
                 <p class="text--reference mb-0 font-italic">{{ southItem.mosqueList }} </p>
               </div>
@@ -61,13 +61,15 @@ export default {
     }
   },
   mounted() {
-    console.log(this.southItem)
   },
   methods: {
     updateSouthDesc(e) {
       this.southItem = e;
+      this.southItem.location = (this.southItem.location.replace(/-/g, ' '));
       this.southItem.mosqueCount = this.southItem.mosque ? this.southItem.mosque.length : 0;
-      this.southItem.mosqueList = this.southItem.mosque
+      if (e.mosque !== 0) {
+        this.southItem.mosqueList = this.southItem.mosque.join(', ')
+      }
     }
   }
 };

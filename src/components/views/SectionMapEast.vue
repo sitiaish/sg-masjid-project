@@ -23,9 +23,9 @@
 
         <div class="map-tooltip-wrapper">
           <div v-if="eastItem.location !== 'init' ">
-            <p class="text--reference mb-2"><b>Planing area:</b> {{ eastItem.location }} </p>
+            <p class="text--reference mb-2"><b>Planing area:</b> <span style="text-transform: capitalize">{{ eastItem.location }}</span> </p>
             <div v-if="eastItem.mosqueCount !== 0">
-              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{eastItem.muslimPop === 0 ? 0 : eastItem.muslimPop + 'thousand'}} </p>
+              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{eastItem.muslimPop === 0 ? 0 : eastItem.muslimPop + ' thousand'}} </p>
               <p class="text--reference mb-2"><b>Mosque count:</b> {{ eastItem.mosqueCount }} </p>
               <p class="text--reference mb-0 font-italic">{{ eastItem.mosqueList }} </p>
             </div>
@@ -65,9 +65,12 @@ export default {
   methods: {
     updateEastDesc(e) {
       this.eastItem = e;
+      this.eastItem.location = (this.eastItem.location.replace(/-/g, ' '));
       this.eastItem.mosqueCount = this.eastItem.mosque ? this.eastItem.mosque.length : 0;
-      // this.eastItem.mosqueList = this.eastItem.mosque.join(', ')
-      this.eastItem.mosqueList = this.eastItem.mosque;
+
+      if (e.mosque !== 0) {
+        this.eastItem.mosqueList = this.eastItem.mosque.join(', ')
+      }      
     }
   }
 };

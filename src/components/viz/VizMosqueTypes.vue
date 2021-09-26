@@ -277,7 +277,7 @@ export default {
         .attr('preserveAspectRatio', 'xMinYMid')
         .call(this.resize, aspect);
 
-      d3.select(window).on('resize.test', () => {
+      d3.select(window).on('resize', () => {
         this.resize(svg, aspect);
       });
     },
