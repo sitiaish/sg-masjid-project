@@ -7,7 +7,7 @@
       </div>
 
       <p class="text--body-2">
-        Immediately, I find that I’m drawn to the names of the mosques in the dataset. The names of some mosques honor the benefactors that contributed significant wealth to raise the mosque from nothing. Others may be signposting their location relative to the landmarks that are around the area.
+        Immediately, I’m drawn to the names of the mosques in the dataset. The names of some mosques honor the benefactors that contributed significant wealth to raise the mosque from nothing. Others may be signposting their location relative to the landmarks that are around the area.
       </p>
 
       <p class="text--body-2 mb-0">
@@ -24,22 +24,22 @@
       </p>
 
       <p class="text--body-2">
-        Masjid Al-Firdaus is located on Jalan Ibadat. <em>Ibadat</em> in Malay translates to acts of worship to God. While in Arabic, it may refer to service or servitude, or Islamic jurisprudence (fiqh) of Muslim religious rituals. 
+        Masjid Al-Firdaus is located on Jalan Ibadat. <i>Ibadat</i> in Malay translates to acts of worship to God. While in Arabic, it may refer to service or servitude, or Islamic jurisprudence (fiqh) of Muslim religious rituals. 
       </p>
 
       <p class="text--body-2 mb-0">
-        Similarly, Masjid Al-Taqua is located on Jalan Bilal. <em>Bilal</em> may be a reference to Bilal Ibn Rabah, a companion of the Islamic Prophet Muhammad’s. He was known as first person to call the <em>adhan</em> (call to prayer). In the Malay language, <em>bilal</em> is the designation given to the person who calls the <em>adhan</em>. 
+        Similarly, Masjid Al-Taqua is located on Jalan Bilal. <i>Bilal</i> may be a reference to Bilal Ibn Rabah, a companion of the Islamic Prophet Muhammad’s. He was known as the first person to call the <i>adhan</i> (call to prayer). In the Malay language, <i>bilal</i> is the designation given to the person who calls the <i>adhan</i>. 
       </p>
     </v-container>
 
     <v-container class="pa-md-0 my-8 my-md-16">
       <v-row align="start" justify="space-around">
         <v-col cols="9" md="5">
-          <img src="@/assets/map1.svg" width="100%" />       
+          <img src="@/assets/map-1.svg" width="100%" />       
         </v-col>
 
         <v-col cols="9" offset="3" offset-md="0" md="5">
-          <img src="@/assets/map1.svg" width="100%" />       
+          <img src="@/assets/map-2.svg" width="100%" />       
         </v-col>        
       </v-row>
     </v-container>

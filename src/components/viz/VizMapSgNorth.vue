@@ -64,6 +64,11 @@ export default {
     // step 4.1-4    
     drawMapBySelection(selectedCluster) {
       // draw new map
+
+      this.map.features.forEach(d => {
+        d.properties.area = this.kebabCase(d.properties.PLN_AREA_N);
+      })
+
       const selectedMap = {
         "type":"FeatureCollection",
         "features": this.map.features.filter(d => d.properties['CLUSTER'] === selectedCluster)
@@ -87,7 +92,7 @@ export default {
         .selectAll('.towns')
         .data(selectedMap.features).enter()
         .append('g')
-        .attr('class', d => `towns ${d.properties.PLN_AREA_N}`);
+        .attr('class', d => `towns ${d.properties.area}`);
 
       svg.select('g.map').selectAll('.towns').each(function(d) {
         d3.select(this)
@@ -99,7 +104,7 @@ export default {
               roughness: 2,
               simplification: 0.8,
               stroke: '#444444',
-              fillWeight: d.properties.MUSLIMS === 0 ? 0.5 : 2
+              fillWeight: d.properties.MUSLIMS === 0 ? 1 : 2
             })
           ).classList.add('town-sketch');
       });
@@ -122,6 +127,14 @@ export default {
         })
        .on('mouseleave.tooltip', function mouseeleave() { 
           svg.selectAll('g.town-sketch').selectAll('path:not(:nth-child(1))').attr('stroke', '#444444').attr('stroke-width', 1);
+
+          self.item = {
+            location: 'init',
+            muslimPop: '',
+            mosque: '',
+          };
+
+          self.$emit('update-north-desc', self.item);               
         });     
               
       // draw filtered mosques

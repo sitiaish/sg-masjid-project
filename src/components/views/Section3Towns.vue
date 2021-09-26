@@ -48,7 +48,7 @@
 
       <v-container class="pa-md-0 inner section-towns-block">
         <p class="text--body-2 mb-0">
-          The South cluster looks different from the former three -- there’s less residential areas here. These mosques are bustling during the day because it’s near the Central Business District. Lunch time overlaps with Zohor (mid-day prayer) time giving people nearby the convenience to pop over to a nearby mosque for their prayer. I quote Noor Iskandar from <a href="https://dr.ntu.edu.sg/bitstream/10356/75885/1/NOORISKANDAR_MASTERSTHESIS.pdf" target="_blank">his thesis on mosques in Singapore</a>: 
+          The South cluster looks different from the former three - there are less residential areas here. These mosques are bustling during the day because it’s near the Central Business District. Lunchtime overlaps with Zohor (mid-day prayer) time giving people nearby the convenience to pop over to a nearby mosque for their prayer. I quote Noor Iskandar from <a href="https://dr.ntu.edu.sg/bitstream/10356/75885/1/NOORISKANDAR_MASTERSTHESIS.pdf" target="_blank">his thesis on mosques in Singapore</a>: 
           
           “Mosques is the most public place to have a private endeavour for a practicing Muslim.”
         </p>

@@ -14,7 +14,7 @@
         <a href="https://ourmosques.commonspaces.sg/" target="_blank">booking system</a> 
         in place for Muslims to 
         <span class="font-italic">chope</span> 
-        a slot for daily and Jumaah congregational prayers to limit the number of congregants to less than equal to 50 at any one time. Said system broke down at 10AM on 11/5/2021 - the exact moment that booking slots were released for Hari Raya congregational prayers this year. 
+        a slot for daily and Jumaah congregational prayers to limit the number of congregants to less than equal to 50 at any one time. Said system broke down at 10 AM on 11/5/2021 - the exact moment that booking slots were released for Hari Raya congregational prayers this year. 
       </p>
 
       <p class="text--body-2">
@@ -22,7 +22,7 @@
       </p>
 
       <p class="text--caption">
-        Note: colors/sketch dimensions is not to scale
+        Note: colors/sketch dimensions are not to scale
       </p>      
     </v-container>
 
@@ -41,7 +41,7 @@
           <v-col cols="12" md="6" class="text-left"> 
             <h1 class="text--h1 font-weight-regular mb-8">This is a mosque somewhere in Singapore.</h1> 
             <p class="text--body-2">
-              It's where me and other Muslims can go for congregational prayers and maybe attend a religious class or two. 
+              It's where Muslims like me can go for congregational prayers and maybe attend a religious class or two. 
             </p>
             <p class="text--body-2">
               There are about 70+ mosques still standing in Singapore. This is an exploration of some of them.
@@ -53,7 +53,7 @@
     
     <v-container class="pa-md-0 inner section-intro-block">
       <p class="text--body-2">
-        I started with listing out all the mosques that I found on the <a href="https://www.muis.gov.sg/mosque/Our-Mosques/Mosque-Directory" target="_blank">MUIS website</a> to create this dataset. The Majlis Ugama Islam Singapura (MUIS), or the Islamic Religious Council of Singapore, administers mosques in Singapore and has a list of mosques under their purview since their formation in 1968. Previously, mosques operated under their own management without an overarching body to report to. 
+        I started by listing out all the mosques that I found on the <a href="https://www.muis.gov.sg/mosque/Our-Mosques/Mosque-Directory" target="_blank">MUIS website</a> to create this dataset. The Majlis Ugama Islam Singapura (MUIS), or the Islamic Religious Council of Singapore, administers mosques in Singapore and has a list of mosques under their purview since their formation in 1968. Previously, mosques operated under their own management without an overarching body to report to. 
       </p>
 
       <p class="text--body-2 mb-0">

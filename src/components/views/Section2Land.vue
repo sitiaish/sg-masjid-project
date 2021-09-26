@@ -11,29 +11,36 @@
       </p>
 
       <ul class="text--body-2 ml-8 my-8">
-        <li><em>Wakaf</em></li>
+        <li><i>Wakaf</i></li>
         <li>Mosque Building Mendaki Fund (MBMF). </li>
-        <li>Temporary Occupation Licence (TOL)</li>
+        <li>Temporary Occupation License (TOL)</li>
         <li>Leasehold</li>        
       </ul>
 
       <p class="text--body-2">
-        Land with TOL status carries a licence issued by SLA for 
+        Land with TOL status carries a license issued by SLA for 
         <a href="https://www.ifaq.gov.sg/sla/apps/fcd_faqmain.aspx?qst=hRhkP9BzcBImsx2TBbssMsxu7lqt6UJK70a1wAEVmyeS%2FsKIBQni97KoyIEWYbqaOuQV95spiCB7hU9stXXumYDmXsSN43FLRMTSuN0LML%2FJ94RP144Vsrlofeg9NOogP%2FXRSQ4AiQfDWJtg7jS6vSwQ20FgPSPzmjLh8JafJy1NyeFsmxigq%2B9C8nmt8IPEw7E%2Fpb3PQi276vhP8D8D7K51GmihYYk9bU%2FFjiVi7J0%3D#FAQ_31016" target="_blank">
         "the temporary use of State land [...]"</a>.
         
-        Leasehold lands in Singapore are for either on a 99-year or 999-year basis. Land used for developing mosques are given 
-        <a href="https://www.nas.gov.sg/archivesonline/data/pdfdoc/lky19871003.pdf" target="_blank">
+        Leasehold lands in Singapore are for either on a 99-year or 999-year basis. Land used for developing mosques is given a <a href="https://www.nas.gov.sg/archivesonline/data/pdfdoc/lky19871003.pdf" target="_blank">
         99-year lease to facilitate the government's policy to have one mosque in every HDB New Town developed</a>.
       </p>
 
       <p class="text--body-2">
-        Some mosques are also protected under the Administration of Muslim Law Act (AMLA) and these are called <em>Wakaf</em> mosques. A property that is dedicated as <em>Wakaf</em> is a voluntary charitable endowment whose ownership is <a href="https://www.masjidjamaechulia.sg/welcome/history" taregt="_blank">placed in trust for the Muslim community</a>. 
+        Some mosques are also protected under the Administration of Muslim Law Act (AMLA) and these are called <i>wakaf</i> mosques. A property that is dedicated as <i>wakaf</i> is a voluntary charitable endowment whose ownership is <a href="https://www.masjidjamaechulia.sg/welcome/history" taregt="_blank">placed in trust for the Muslim community</a>. 
+      </p>
+
+      <p class="text--body-2">
+        A land that has been <i>wakaf</i> for a mosque must be used for that, and not any other purposes. This implicitly means that <i>wakaf</i> mosques in Singapore are the older ones. These days, how many of us Singaporeans actually own land to build a mosque right? (Even our houses are BTO.) 
+      </p>
+
+      <p class="text--body-2">
+        I want to single out a <i>wakaf</i> mosque that I found really interesting in my research: Masjid Temenggong Daeng Ibrahim. Earlier I mentioned that it wasn't in MUIS' official directory, but it's still open for people to do their prayers. 
       </p>
 
       <p class="text--body-2 mb-0">
-        A land that has been <em>Wakaf</em> for a mosque must be used for that, and not any other purposes. This implicitly means that <em>Wakaf</em> mosques in Singapore are the older ones. These days, how many of us Singaporeans actually own land to build a mosque right? (Even our houses are BTO.) 
-      </p>
+       Located along Telok Blangah Road (near Vivo City Shopping Mall), this mosque actually belongs to the Johor Sultanate, and hence administered by Jabatan Agama Islam Negeri Johor (JAIJ), the religious governing body of Johor. Its <i>wakaf</i> status comes from the fact that it stands on the grounds of the palace first built for Temenggong Abdul Rahman in 1824, called <i>Istana Lama</i> (old palace). Today, this site houses the mosque and the tombs of Temenggong Abdul Rahman and his son, Daeng Ibrahim.
+      </p>      
     </v-container>
 
     <VizMosqueTypes v-if="!$vuetify.breakpoint.mobile" />  
@@ -59,7 +66,7 @@
           </template>
 
         <template v-slot:opposite>
-          <img :src="require('@/assets/' + `${n.img}` + '.svg')" />
+          <img :src="require('@/assets/' + `${n.img}`)" width="100%"/>
         </template>
             
           <v-card class="elevation-0 pa-3">
@@ -87,10 +94,10 @@ export default {
   data() {
     return {
       mbmfPhases: [
-        { phase: 1, year: '1976 - 1980', name: 'Pioneers-Grand mosques', example: 'Some examples are Masjid Assyakirin and Masjid Al-Muttaqin. As the first few of the many to come, these mosques are massive.', img: 'assyakirin-wire-1'},
-        { phase: 2, year: '1981 - 1995', name: 'Nusantara', example: 'As the name suggests, Masjid Alkaff Kampung Melayu and Masjid Darul Makmur among others, bear influence of native Malay architecture.', img: 'assyakirin-wire'},   
-        { phase: 3, year: '1996 - 2005', name: 'Contemporary Singapore Model of Compact Urban Mosques', example: 'Examples: Masjid Al-Istighfar and Masjid Assyafaah', img: 'assyakirin-wire-bw'},       
-        { phase: 4, year: '2006 - now', name: 'Performance-Friendly', example: 'These mosques feature environmentally-friendly features. Masjid Al-Mawaddah even achieved the Greenmark Certification from the Building and Construction Authority.', img: 'ghufran-wire'},  
+        { phase: 1, year: '1976 - 1980', name: 'Pioneers-Grand mosques', example: 'Some examples are Masjid Assyakirin and Masjid Al-Muttaqin. As the first few of the many to come, these mosques are massive.', img: 'assyakirin-wire-1.svg'},
+        { phase: 2, year: '1981 - 1995', name: 'Nusantara', example: 'As the name suggests, some mosques like Masjid Alkaff Kampung Melayu and Masjid Darul Makmur among others, bear influence of Nusantara in their motifs and designs.', img: 'ghufran-pink.png'},   
+        { phase: 3, year: '1996 - 2005', name: 'Contemporary Singapore Model of Compact Urban Mosques', example: 'Examples: Masjid Al-Istighfar and Masjid Assyafaah', img: 'assyafaah.svg'},       
+        { phase: 4, year: '2006 - now', name: 'Performance-Friendly', example: 'These mosques feature environmentally-friendly features. Masjid Al-Mawaddah even achieved the Greenmark Certification from the Building and Construction Authority.', img: 'mawaddah-green.svg'},  
       ]
     }
   }

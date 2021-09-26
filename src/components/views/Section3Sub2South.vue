@@ -12,7 +12,7 @@
             </p>
 
             <p class="text--body-3">
-              Masjid Al-Falah, in Orchard Road is housed in the lower floor of a commercial building with a linkbridge into Paragon Mall. The tell-tale sign of the mosque is the minimalist dome-shaped embellishment over the front doors of the mosque, and the signboard that reads “Masjid Al-Falah”.
+              Masjid Al-Falah, in Orchard Road is housed in the lower floor of a commercial building with a link bridge into Paragon Mall. The tell-tale sign of the mosque is the minimalist dome-shaped embellishment over the front doors of the mosque, and the signboard that reads “Masjid Al-Falah”.
             </p>
 
             <p class="text--body-3 mb-0">
@@ -21,16 +21,22 @@
           </div>
 
           <div class="map-tooltip-wrapper">
-            <!-- <p class="text--body-3 font-tertiary">
-              Hover over the map areas to see the mosques in the South cluster.
-            </p> -->
+            <div v-if="southItem.location !== 'init' ">
+              <p class="text--reference mb-2"><b>Planing area:</b> {{ southItem.location }} </p>
+              <div v-if="southItem.mosqueCount !== 0">
+                <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b>  {{ southItem.muslimPop === 0 ? 0 : southItem.muslimPop + 'thousand' }} </p>
+                <p class="text--reference mb-2"><b>Mosque count:</b> {{ southItem.mosqueCount }} </p>
+                <p class="text--reference mb-0 font-italic">{{ southItem.mosqueList }} </p>
+              </div>
+              <div v-else>
+                There's no data in this planning area. Hover over the coloured ones to see more!
+              </div>
+            </div>
 
-            <!-- The {{ southItem.location }} planning area. The 2015 Census recorded {{ southItem.muslimPop }} thousand Muslims here. There are 
-            {{ southItem.mosqueCount }}. 
-            
-            {{ southItem.mosqueList }} -->
-
-          </div>  
+            <div v-else>
+              <p>Hover over the planning areas for more details</p>
+            </div>    
+          </div> 
         </v-col>        
         <v-col cols="12" md="5" offset-md="1">
           <VizMapSgSouth @update-south-desc="updateSouthDesc" />
@@ -50,20 +56,29 @@ export default {
   },
   data() {
     return {
-      southItem: [
-        { location: '' }, 
-        { pop: '' },
-        { mosqueCount: '' },
-        { mosqueList: '' }
-      ]
+      southItem: 
+        { location: 'init', muslimPop: 0, mosqueCount: '', mosqueList: '' }
     }
+  },
+  mounted() {
+    console.log(this.southItem)
   },
   methods: {
     updateSouthDesc(e) {
       this.southItem = e;
       this.southItem.mosqueCount = this.southItem.mosque ? this.southItem.mosque.length : 0;
-      this.southItem.mosqueList = this.southItem.mosque.join(', ')
+      this.southItem.mosqueList = this.southItem.mosque
     }
   }
 };
 </script>
+
+<style scoped lang="scss">
+.map-tooltip-wrapper {
+  border-left: 4px solid #e2e2e2;
+  padding-left: 16px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+</style>

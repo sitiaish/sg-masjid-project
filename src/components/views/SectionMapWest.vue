@@ -2,7 +2,7 @@
   <div class="map-cluster">
     <v-row align="center" justify="start" no-gutters>
       <v-col cols="12" md="4" order-md="2">
-        <div class="mb-12">
+        <div class="my-10 mt-md-0 mb-6">
           <p class="text--h4 mb-0">West side</p>
           <p class="text--body-2">16 mosques</p>
 
@@ -17,15 +17,25 @@
           <p class="text--body-3">
             The lone dot on the Western Islands is Masjid Pulau Bukom that caters to the people working on the island.
           </p>
-
-          <div class="map-tooltip-wrapper hidden-sm-and-down">
-            The {{ westItem.location }} planning area. The 2015 Census recorded {{ westItem.muslimPop }} thousand Muslims here. There are 
-            {{ westItem.mosqueCount }}. 
-            
-            {{ westItem.mosqueList }}
-
-          </div>
         </div>
+
+        <div class="map-tooltip-wrapper">
+          <div v-if="westItem.location !== 'init' ">
+            <p class="text--reference mb-2"><b>Planing area:</b> {{ westItem.location }} </p>
+            <div v-if="westItem.mosqueCount !== 0">
+              <p class="text--reference mb-2"><b>No. of Muslims (2015 census):</b> {{westItem.muslimPop === 0 ? 0 : westItem.muslimPop + 'thousand'}}</p>
+              <p class="text--reference mb-2"><b>Mosque count:</b> {{ westItem.mosqueCount }} </p>
+              <p class="text--reference mb-0 font-italic">{{ westItem.mosqueList }} </p>
+            </div>
+            <div v-else>
+              There's no data in this planning area. Hover over the coloured ones to see more!
+            </div>
+          </div>
+
+          <div v-else>
+            <p>Hover over the planning areas for more details</p>
+          </div>      
+        </div>           
       </v-col> 
 
       <v-col cols="12" md="7" order-md="1">
@@ -48,20 +58,25 @@ export default {
   },
   data() {
     return {
-      westItem: [
-        { location: '' }, 
-        { pop: '' },
-        { mosqueCount: '' },
-        { mosqueList: '' }
-      ]
+      westItem: { location: 'init', muslimPop: 0, mosqueCount: '', mosqueList: '' },
     }
   },
   methods: {
     updateWestDesc(e) {
       this.westItem = e;
       this.westItem.mosqueCount = this.westItem.mosque ? this.westItem.mosque.length : 0;
-      this.westItem.mosqueList = this.westItem.mosque.join(', ')
+      this.westItem.mosqueList = this.westItem.mosque
     }
   }
 };
 </script>
+
+<style scoped lang="scss">
+.map-tooltip-wrapper {
+  border-left: 4px solid #e2e2e2;
+  padding-left: 16px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+</style>

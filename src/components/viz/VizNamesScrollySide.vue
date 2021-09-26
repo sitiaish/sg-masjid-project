@@ -7,7 +7,7 @@
         <div class="step" data-step="0">
           <div class="text-block">
             <p class="text--body-3 mb-0">
-              I look the liberty of arranging the mosque names in alphabetical order for this visualisation. Let's first look at the mosques that are <span class="text--body-2 font-tertiary font-weight-bold">named after people</span>.
+              I took the liberty of arranging the mosque names in alphabetical order for this visualisation. Let's first look at the mosques that are <span class="text--body-2 font-tertiary font-weight-bold">named after people</span>.
             </p>           
           </div>
         </div>
@@ -17,11 +17,11 @@
             <p class="text--body-1 font-tertiary font-weight-bold">Masjid {name-of-person}</p>
 
             <p class="text--body-3">
-              Some of the mosques are named after people of influence and/or had contributed their wealth, land or energy in establishing the mosque. 
+              Some of the mosques are named after people of influence and/or had contributed their wealth, land, or energy in establishing the mosque. 
             </p>
 
             <p class="text--body-3 mb-0">  
-              The names suggest that the people are of Arab, Indian and Malay descents. The former two probably landed on Singapore shores for purposes of trade but ended up staying longer. 
+              The names suggest that the people are of Arab, Indian, and Malay descent. The former two probably landed on Singapore shores for purposes of trade but ended up staying longer. 
             </p>           
           </div>
         </div>        
@@ -59,7 +59,7 @@
             </p>  
 
             <p class="text--body-3">
-              For instance, <span class="text--body-2 font-tertiary font-weight-bold">Al-Muttaqin</span> means ‘<em>The</em> pious people who are ever aware of God the Almighty’. 
+              For instance, <span class="text--body-2 font-tertiary font-weight-bold">Al-Muttaqin</span> means ‘<i>The</i> pious people who are ever aware of God the Almighty’. 
             </p>              
           </div>
         </div>
@@ -69,7 +69,7 @@
             <p class="text--body-1 font-tertiary font-weight-bold">Named after places or landmarks nearby</p>
 
             <p class="text--body-3">
-              These are the handful that are named after places or landmarks nearby. 
+              These are the handful that is named after places or landmarks nearby. 
               <span class="text--body-2 font-tertiary font-weight-bold">Masjid Bencoolen</span>
               is literally at the Bencoolen MRT station!
             </p>
@@ -95,7 +95,7 @@
             </p>
 
             <p class="text--body-3">
-              Like the name <span class="text--body-2 font-tertiary font-weight-bold">Masjid Tasek Utara</span> which translates to Masjid North Lake! Even <em>‘tasek’</em> is spelt in old Malay with an ‘e’ instead of ‘i’. I checked the mosque on the map; it’s concrete buildings all around and no sign of any lakes nearby. 
+              Like the name <span class="text--body-2 font-tertiary font-weight-bold">Masjid Tasek Utara</span> which translates to Masjid North Lake! Even <i>‘tasek’</i> is spelled in old Malay with an ‘e’ instead of ‘i’. I checked the mosque on the map; it’s concrete buildings all around and no sign of any lakes nearby. 
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@
             </p>
 
             <p class="text--body-3 mb-0">            
-              This is a shoutout to the Indian Muslim community in Singapore. These mosques bear historial importance to the Indian Muslims who came to our shores, some 
+              This is a shoutout to the Indian Muslim community in Singapore. These mosques bear historical importance to the Indian Muslims who came to our shores, some 
               <a href="https://www.straitstimes.com/singapore/mosque-for-the-tamil-milkman" target="_blank"> two centuries ago as moneylenders or traders</a>. 
             </p>
           </div>
@@ -119,7 +119,7 @@
           <div class="text-block">
             <p class="text--body-3">
               <span class="text--body-2 font-tertiary font-weight-bold">Masjid Jamae Chulia</span> 
-              was named after the Chulias, Tamil Muslims from India's south-eastern coast. This mosque is also referred to as the Paalkaara <em>Kadai Palli</em> (Milkman's Shop Mosque), <em>Periya Palli</em> (Big Mosque) and <em>Chulia Palli</em> (Chulia Mosque).
+              was named after the Chulias, Tamil Muslims from India's south-eastern coast. This mosque is also referred to as the Paalkaara <i>Kadai Palli</i> (Milkman's Shop Mosque), <i>Periya Palli</i> (Big Mosque) and, <i>Chulia Palli</i> (Chulia Mosque).
             </p>
             
             <p class="text--body-3 mb-0">

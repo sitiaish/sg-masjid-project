@@ -44,7 +44,7 @@
       </p>        
 
       <p class="text--body-2">
-        The mosque is a place of worship for Muslims in Singapore. But it also forms its own organic community and, with its identity.
+        The mosque is not just a place of worship for Muslims. It's also a place where communities of congregants are formed organically.  
       </p>
 
       <div class="archi-saf my-12">
@@ -146,11 +146,11 @@
       </div>      
 
       <p class="text--body-2">
-        Sometimes, it’s a microcosm of it’s external location. I remember how significant the Bangladeshi community was in Assyakirin Mosque before the pandemic struck. On Sundays in Ramadan, they would cook biryani in the mosque compound for a communal break fast meal. Anyone can walk in and join. Migrant workers from the nearby dormitories would come by and perform <em>Maghrib</em> prayers after. My dad enjoyed the food so much that he’d break fast there on Sundays. 
+        Sometimes, it’s a microcosm of its external location. I remember how significant the Bangladeshi community was in Assyakirin Mosque before the pandemic struck. On Sundays in Ramadan, they would cook biryani in the mosque compound for a communal break fast meal. Anyone can walk in and join. Migrant workers from the nearby dormitories would come by and perform <i>Maghrib</i> prayers after. My dad enjoyed the food so much that he’d break fast there on Sundays. 
       </p>
 
       <p class="text--body-2">
-        Sometimes, people look for older mosques - you know, those with the <em>kampong</em> vibes - to find tranquility and reminisce the times before MBMF mosques came in. (I checked the Google reviews and saw these comments!) 
+        Sometimes, people look for older mosques - you know, those with the <i>kampong</i> vibes - to find tranquility and reminisce the times before MBMF mosques came in. (I checked the Google reviews and saw these comments!) 
       </p>
 
       <v-row justify="center" align="center" class="mt-8 mt-md-12 mb-6">

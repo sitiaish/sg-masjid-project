@@ -104,12 +104,12 @@ export default {
           .node()
           .appendChild(
             rc.path(geoPath(d), {
-              fill: d.properties.MUSLIMS === 0 ?  '#DCDCDC' : colorScale(d.properties.MUSLIMS),
+              fill: d.properties.MUSLIMS === 0 ?  '#ececec' : colorScale(d.properties.MUSLIMS),
               fillStyle: d.properties.MUSLIMS === 0 ? 'hachure' : 'cross-hatch',
               roughness: 2,
               stroke: '#444444',
               simplification: 0.8,
-              fillWeight: d.properties.MUSLIMS === 0 ? 0.5 : 2
+              fillWeight: d.properties.MUSLIMS === 0 ? 1.5 : 2
             })
           ).classList.add('town-sketch');
       });
@@ -141,6 +141,14 @@ export default {
        .on('mouseleave.tooltip', function mouseeleave() { 
           d3.selectAll('g.town-sketch').selectAll('path:not(:nth-child(1))').attr('stroke', '#444444').attr('stroke-width', 1);
           d3.selectAll('.western-islands').selectAll('g.town-sketch').selectAll('path').attr('stroke', '#DCDCDC').attr('stroke-width', 1);
+
+          self.item = {
+            location: 'init',
+            muslimPop: '',
+            mosque: '',
+          };
+
+          self.$emit('update-east-desc', self.item);           
         });
 
       // draw filtered mosques

@@ -119,7 +119,8 @@
         "properties":{
            "PLN_AREA_N":"OUTRAM",
            "CLUSTER":"South",
-           "MUSLIMS": 1.9
+           "MUSLIMS": 1.9,
+           "MOSQUE": ["Al-Abrar", "Jamae Chulia"]
         }
      },
      {
@@ -454,7 +455,8 @@
         "properties":{
            "PLN_AREA_N":"BUKIT MERAH",
            "CLUSTER":"South",
-           "MUSLIMS": 11.3
+           "MUSLIMS": 11.3,
+           "MOSQUE": ["Al-Amin", "Jamek Queenstown", "Jamiyah Ar-Rabitah", "Kampong Delta", "Temenggong Daeng Ibrahim"]
         }
      },
      {
@@ -637,7 +639,8 @@
         "properties":{
            "PLN_AREA_N":"DOWNTOWN CORE",
            "CLUSTER":"South",
-           "MUSLIMS": 0
+           "MUSLIMS": 0,
+           "MOSQUE": ["Haji Muhammad Salleh (Palmer Road)", "Burhani"]
         }
      },
      {
@@ -815,7 +818,8 @@
         "properties":{
            "PLN_AREA_N":"SINGAPORE RIVER",
            "CLUSTER":"South",
-           "MUSLIMS": 0
+           "MUSLIMS": 0,
+           "MOSQUE": ["Omar Kampong Melaka", "Moulana Mohd Ali M C"]
         }
      },
      {
@@ -3637,7 +3641,8 @@
         "properties":{
            "PLN_AREA_N":"ROCHOR",
            "CLUSTER":"South",
-           "MUSLIMS": 0
+           "MUSLIMS": 0,
+           "MOSQUE": ["Bencoolen", "Abdul Gafoor", "Sultan", "Malabar", "Angullia"]
         }
      },
      {
@@ -3828,7 +3833,8 @@
         "properties":{
            "PLN_AREA_N":"KALLANG",
            "CLUSTER":"South",
-           "MUSLIMS": 7.6
+           "MUSLIMS": 7.6,
+           "MOSQUE": ["Hajjah Fatimah", "Tasek Utara"]
         }
      },
      {
@@ -3999,7 +4005,8 @@
         "properties":{
            "PLN_AREA_N":"ORCHARD",
            "CLUSTER":"South",
-           "MUSLIMS": 0
+           "MUSLIMS": 0,
+           "MOSQUE": ["Al-Falah"]
         }
      },
      {
@@ -4556,7 +4563,8 @@
         "properties":{
            "PLN_AREA_N":"TANGLIN",
            "CLUSTER":"South",
-           "MUSLIMS": 0.3
+           "MUSLIMS": 0.3,
+           "MOSQUE": ["Ba'alwie"]
         }
      },
      {

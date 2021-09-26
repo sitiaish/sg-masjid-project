@@ -14,9 +14,21 @@
             <div class="mb-2">References</div>
 
             <div class="footer-references__content text-caption">
-              hello testing <a>then how</a>
+              <p class="text--references">
+                
+              </p>
             </div>
           </div>
+
+          <div class="footer-references mt-12">
+            <div class="mb-2">Methodology</div>
+
+            <div class="footer-references__content text-caption">
+              <p class="text--references">
+                I collected a list of mosques in this story from the MUIS website, and further populated it with details like year built, mosque capacity and geographical location through research. The dataset is available here with links to substantiate the history of the names. 
+              </p>
+            </div>
+          </div>          
         </div>
       </v-expansion-panel-content>
     </v-expansion-panel>
