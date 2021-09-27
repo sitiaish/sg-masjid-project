@@ -48,6 +48,18 @@
               <p class="text--references">
                 I collected a list of mosques in this story from the MUIS website, and further populated it with details like year built, mosque capacity and geographical location through research. Please allow me some time to clean up the dataset before releasing it! 
               </p>
+
+              <p class="text--references">
+                The dataset for the mini maps pertaining to people who identify as Muslims per planning area is obtained from <i>Resident Population Aged 15 Years and Over by Planning Area and Religion, 2015</i> on data.gov <a href="https://data.gov.sg/dataset/resident-population-aged-15-years-and-over-by-planning-area-and-religion-2015?resource_id=f4cd606f-b4a1-4f8d-a517-095e4af8c964" target="_blank">here</a>. I have omitted the "Others" planning area because I could not map it geographically.
+              </p>
+
+              <p class="text--references">
+                The dataset for the planning areas is obtained from <i>Master Plan 2019 Planning Area Boundary</i> on data.gov <a href="https://data.gov.sg/dataset/master-plan-2019-planning-area-boundary-no-sea" target="_blank">here</a>. I have also referenced this github <a href="https://gist.github.com/artidata/4a25aff39864ec088d0a61a7d31a6f44#file-sg-plan-area-20170903-json" target="_blank">gist</a> to make the map. 
+              </p>
+
+              <p class="text--references">
+                I joined the two datasets based on the planning area column to create the full Singapore map, and manually divided the planning areas into North, South, East and West clusters based on <a href="https://www.muis.gov.sg/mosque" target="_blank">this map</a> from the MUIS website.
+              </p>
             </div>
           </div>          
         </div>
