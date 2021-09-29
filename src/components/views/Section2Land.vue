@@ -52,7 +52,7 @@
       </p>
 
       <p class="text--body-2 mb-6">
-        To date, there has been a total of 4 phases of MBMF-mosque building projects. I refer to <a href="https://dr.ntu.edu.sg/bitstream/10356/75885/1/NOORISKANDAR_MASTERSTHESIS.pdf" target="_blank">Noor Iskandar's thesis</a> on mosque spaces in Singapore for the characterisation of these four phases:
+        To date, there has been a total of 4 phases of MBMF-mosque building projects. I refer to <a href="https://dr.ntu.edu.sg/bitstream/10356/75885/1/NOORISKANDAR_MASTERSTHESIS.pdf" target="_blank">Noor Iskandar's thesis</a> on mosque spaces in Singapore for the typology characterisation in these phases:
       </p>
 
       <v-timeline :dense="$vuetify.breakpoint.smAndDown" class="my-md-16 my-8">

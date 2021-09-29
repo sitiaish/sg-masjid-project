@@ -70,9 +70,12 @@
   <p class="text--body-4 mb-2">
     <b>Additional illustrations by</b>: Dian Nadhirah <br>
   </p>
-  <p class="text--body-4 mb-0">
+  <p class="text--body-4 mb-4">
     Thank you Dian and Nisa for believing in this project when I first pitched it during <i>cov-eid 2021</i>!
   </p>
+  <p class="text--body-4 mb-0">
+    If you spot any mistakes in the data, do let me know by writing to the email below! Thank you 🙏
+  </p>  
 </v-container>
 </template>
 
